@@ -1,36 +1,32 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
+import type { Metadata } from "next";
+import { Merriweather } from "next/font/google";
+import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin']
-});
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin']
+const merriweather = Merriweather({
+  variable: "--font-merriweather",
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
 });
 
 export const metadata: Metadata = {
-    title: 'Hostel Management System',
-    description: 'A web application for managing hostel rooms',
-    icons: {
-        icon: '/icon.svg'
-    }
+  title: "Hostel Management System",
+  description: "A web application for managing hostel rooms",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
-    children
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <ClerkProvider>
-            <html lang="en">
-                <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
-            </html>
-        </ClerkProvider>
-    );
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${merriweather.variable} antialiased`}>{children}</body>
+      </html>
+    </ClerkProvider>
+  );
 }
