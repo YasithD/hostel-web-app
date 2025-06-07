@@ -5751,3 +5751,8 @@ declare abstract class WorkflowInstance {
         payload: unknown;
     }): Promise<void>;
 }
+
+/* Custom interfaces */
+interface CloudflareEnv {
+    DB: D1Database;
+}
