@@ -112,7 +112,7 @@ const formSchema = yup.object({
 });
 
 // Type definition for the form data
-type FormData = yup.InferType<typeof formSchema>;
+export type FormData = yup.InferType<typeof formSchema>;
 
 // Default values
 const defaultValues: FormData = {
@@ -139,10 +139,11 @@ export default function RequestAccommodation() {
   const isInternal = form.watch("typeOfStudent") === "internal";
   const isReasonOther = form.watch("reason") === "other";
 
-  function onSubmit(values: FormData) {
-    setTimeout(() => {
-      console.log(values);
-    }, 2000);
+  async function onSubmit(values: FormData) {
+    await fetch("/api/request", {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
   }
 
   return (

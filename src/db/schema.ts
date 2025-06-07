@@ -4,9 +4,7 @@ import { randomUUID } from "crypto";
 
 // Define tables
 export const requests = sqliteTable("requests", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => randomUUID()),
+  id: text("id").primaryKey(),
   user_id: text("user_id").notNull(),
   male_student_count: integer("male_student_count").notNull(),
   female_student_count: integer("female_student_count").notNull(),
@@ -107,19 +105,3 @@ export const hostelAllocationsRelations = relations(hostelAllocations, ({ one })
 export const hostelsRelations = relations(hostels, ({ many }) => ({
   hostelAllocations: many(hostelAllocations),
 }));
-
-// Type exports for TypeScript
-export type Request = typeof requests.$inferSelect;
-export type NewRequest = typeof requests.$inferInsert;
-
-export type InternalRequest = typeof internalRequests.$inferSelect;
-export type NewInternalRequest = typeof internalRequests.$inferInsert;
-
-export type ExternalRequest = typeof externalRequests.$inferSelect;
-export type NewExternalRequest = typeof externalRequests.$inferInsert;
-
-export type Hostel = typeof hostels.$inferSelect;
-export type NewHostel = typeof hostels.$inferInsert;
-
-export type HostelAllocation = typeof hostelAllocations.$inferSelect;
-export type NewHostelAllocation = typeof hostelAllocations.$inferInsert;
