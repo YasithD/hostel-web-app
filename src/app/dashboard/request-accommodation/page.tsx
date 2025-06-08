@@ -196,15 +196,21 @@ export default function RequestAccommodation() {
                               <SelectValue placeholder="Select a faculty" />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="faculty1">Faculty of Agricultural Sciences</SelectItem>
-                              <SelectItem value="faculty2">Faculty of Applied Sciences</SelectItem>
-                              <SelectItem value="faculty3">Faculty of Computing</SelectItem>
-                              <SelectItem value="faculty4">Faculty of Geomatics</SelectItem>
-                              <SelectItem value="faculty5">Faculty of Graduate Studies</SelectItem>
-                              <SelectItem value="faculty6">Faculty of Management Studies</SelectItem>
-                              <SelectItem value="faculty7">Faculty of Medicine</SelectItem>
-                              <SelectItem value="faculty8">Faculty of Social Sciences and Languages</SelectItem>
-                              <SelectItem value="faculty9">Faculty of Technology</SelectItem>
+                              <SelectItem value="Faculty of Agricultural Sciences">
+                                Faculty of Agricultural Sciences
+                              </SelectItem>
+                              <SelectItem value="Faculty of Applied Sciences">Faculty of Applied Sciences</SelectItem>
+                              <SelectItem value="Faculty of Computing">Faculty of Computing</SelectItem>
+                              <SelectItem value="Faculty of Geomatics">Faculty of Geomatics</SelectItem>
+                              <SelectItem value="Faculty of Graduate Studies">Faculty of Graduate Studies</SelectItem>
+                              <SelectItem value="Faculty of Management Studies">
+                                Faculty of Management Studies
+                              </SelectItem>
+                              <SelectItem value="Faculty of Medicine">Faculty of Medicine</SelectItem>
+                              <SelectItem value="Faculty of Social Sciences and Languages">
+                                Faculty of Social Sciences and Languages
+                              </SelectItem>
+                              <SelectItem value="Faculty of Technology">Faculty of Technology</SelectItem>
                             </SelectContent>
                           </Select>
                         </FormControl>
