@@ -1,23 +1,16 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "4a229bfb-5653-4533-825c-cafc8d9565be",
+  "id": "81567eae-f8ca-44ee-a270-a09616eeea42",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "external_requests": {
       "name": "external_requests",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
         "request_id": {
           "name": "request_id",
           "type": "text",
-          "primaryKey": false,
+          "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
@@ -83,6 +76,13 @@
         "hostel_id": {
           "name": "hostel_id",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "students_allocated": {
+          "name": "students_allocated",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -169,17 +169,10 @@
     "internal_requests": {
       "name": "internal_requests",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
         "request_id": {
           "name": "request_id",
           "type": "text",
-          "primaryKey": false,
+          "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
@@ -237,6 +230,13 @@
         },
         "user_id": {
           "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

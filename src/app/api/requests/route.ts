@@ -1,5 +1,5 @@
 import { type FormData } from "@/app/dashboard/request-accommodation/page";
-import { submitRequest } from "@/utils/db";
+import { getRequests, submitRequest } from "@/utils/db";
 import { type NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -14,5 +14,14 @@ export async function POST(req: NextRequest) {
     }
   } catch (error) {
     return new Response(JSON.stringify({ error: `Failed to submit request: ${error}` }), { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    const response = await getRequests();
+    return new Response(JSON.stringify(response), { status: 200 });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: `Failed to get requests: ${error}` }), { status: 500 });
   }
 }

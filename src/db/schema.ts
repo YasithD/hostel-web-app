@@ -1,11 +1,12 @@
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
-import { randomUUID } from "crypto";
+import { createId } from "@/utils/uuid";
 
 // Define tables
 export const requests = sqliteTable("requests", {
   id: text("id").primaryKey(),
   user_id: text("user_id").notNull(),
+  type: text("type", { enum: ["internal", "external"] }).notNull(),
   male_student_count: integer("male_student_count").notNull(),
   female_student_count: integer("female_student_count").notNull(),
   start_date: integer("start_date", { mode: "timestamp" }).notNull(),
@@ -19,11 +20,8 @@ export const requests = sqliteTable("requests", {
 });
 
 export const internalRequests = sqliteTable("internal_requests", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => randomUUID()),
   request_id: text("request_id")
-    .notNull()
+    .primaryKey()
     .references(() => requests.id, { onDelete: "cascade" }),
   faculty: text("faculty").notNull(),
   academic_year: text("academic_year").notNull(),
@@ -31,11 +29,8 @@ export const internalRequests = sqliteTable("internal_requests", {
 });
 
 export const externalRequests = sqliteTable("external_requests", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => randomUUID()),
   request_id: text("request_id")
-    .notNull()
+    .primaryKey()
     .references(() => requests.id, { onDelete: "cascade" }),
   institution: text("institution").notNull(),
   reason: text("reason", { enum: ["sports", "event", "other"] }).notNull(),
@@ -43,9 +38,7 @@ export const externalRequests = sqliteTable("external_requests", {
 });
 
 export const hostels = sqliteTable("hostels", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => randomUUID()),
+  id: text("id").primaryKey().$defaultFn(createId()),
   name: text("name").notNull(),
   type: text("type", { enum: ["male", "female"] }).notNull(),
   total_capacity: integer("total_capacity").notNull(),
@@ -53,15 +46,14 @@ export const hostels = sqliteTable("hostels", {
 });
 
 export const hostelAllocations = sqliteTable("hostel_allocations", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => randomUUID()),
+  id: text("id").primaryKey().$defaultFn(createId()),
   request_id: text("request_id")
     .notNull()
     .references(() => requests.id, { onDelete: "cascade" }),
   hostel_id: text("hostel_id")
     .notNull()
     .references(() => hostels.id, { onDelete: "cascade" }),
+  students_allocated: integer("students_allocated").notNull(),
 });
 
 // Define relationships
@@ -105,3 +97,10 @@ export const hostelAllocationsRelations = relations(hostelAllocations, ({ one })
 export const hostelsRelations = relations(hostels, ({ many }) => ({
   hostelAllocations: many(hostelAllocations),
 }));
+
+// Typescript types
+export type Request = typeof requests.$inferSelect;
+export type InternalRequest = typeof internalRequests.$inferSelect;
+export type ExternalRequest = typeof externalRequests.$inferSelect;
+export type Hostel = typeof hostels.$inferSelect;
+export type HostelAllocation = typeof hostelAllocations.$inferSelect;

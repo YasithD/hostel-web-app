@@ -1,0 +1,638 @@
+### Female Hostels
+
+### Gunawardena Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Gunawardena",
+  "type": "female",
+  "total_capacity": 196,
+  "available_capacity": 0
+}
+
+###
+
+### Chandrika Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Chandrika",
+  "type": "female",
+  "total_capacity": 44,
+  "available_capacity": 0
+}
+
+###
+
+### Karawita Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Karawita - Repair",
+  "type": "female",
+  "total_capacity": 100,
+  "available_capacity": 0
+}
+
+###
+
+### Kumarathunga Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Kumarathunga",
+  "type": "female",
+  "total_capacity": 40,
+  "available_capacity": 0
+}
+
+###
+
+### Chithralatha Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Chithralatha",
+  "type": "female",
+  "total_capacity": 46,
+  "available_capacity": 0
+}
+
+###
+
+### Sahan Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sahan",
+  "type": "female",
+  "total_capacity": 98,
+  "available_capacity": 1
+}
+
+###
+
+### Ravindra Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Ravindra",
+  "type": "female",
+  "total_capacity": 176,
+  "available_capacity": 0
+}
+
+###
+
+### Weerasinghe 01 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Weerasinghe 01",
+  "type": "female",
+  "total_capacity": 20,
+  "available_capacity": 0
+}
+
+###
+
+### Weerasinghe 02 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Weerasinghe 02",
+  "type": "female",
+  "total_capacity": 70,
+  "available_capacity": 0
+}
+
+###
+
+### Weerasinghe 03 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Weerasinghe 03",
+  "type": "female",
+  "total_capacity": 32,
+  "available_capacity": 0
+}
+
+###
+
+### Asiri Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Asiri",
+  "type": "female",
+  "total_capacity": 74,
+  "available_capacity": 0
+}
+
+###
+
+### Wanasinghe 1 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Wanasinghe 1",
+  "type": "female",
+  "total_capacity": 40,
+  "available_capacity": 0
+}
+
+###
+
+### Wanasinghe 2 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Wanasinghe 2",
+  "type": "female",
+  "total_capacity": 32,
+  "available_capacity": 0
+}
+
+###
+
+### Wijerathna Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Wijerathna",
+  "type": "female",
+  "total_capacity": 24,
+  "available_capacity": 0
+}
+
+###
+
+### Sewwandi Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sewwandi",
+  "type": "female",
+  "total_capacity": 82,
+  "available_capacity": 0
+}
+
+###
+
+### Keerthisinghe Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Keerthisinghe",
+  "type": "female",
+  "total_capacity": 46,
+  "available_capacity": 2
+}
+
+###
+
+### Kurunagala Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Kurunagala",
+  "type": "female",
+  "total_capacity": 66,
+  "available_capacity": 0
+}
+
+###
+
+### Anjalika 01 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Anjalika - 01",
+  "type": "female",
+  "total_capacity": 76,
+  "available_capacity": 0
+}
+
+###
+
+### Anjalika 02 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Anjalika - 02",
+  "type": "female",
+  "total_capacity": 28,
+  "available_capacity": 0
+}
+
+###
+
+### Walawa Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Walawa",
+  "type": "female",
+  "total_capacity": 82,
+  "available_capacity": 1
+}
+
+###
+
+### Sirimadura I Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sirimadura I",
+  "type": "female",
+  "total_capacity": 52,
+  "available_capacity": 0
+}
+
+###
+
+### Sirimadura II Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sirimadura II",
+  "type": "female",
+  "total_capacity": 52,
+  "available_capacity": 0
+}
+
+###
+
+### Sirimadura III Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sirimadura III",
+  "type": "female",
+  "total_capacity": 70,
+  "available_capacity": 62
+}
+
+###
+
+### Manamperi Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Manamperi",
+  "type": "female",
+  "total_capacity": 42,
+  "available_capacity": 0
+}
+
+###
+
+### Jayani Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "JAYANI",
+  "type": "female",
+  "total_capacity": 40,
+  "available_capacity": 2
+}
+
+###
+
+### Ajantha Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Ajantha",
+  "type": "female",
+  "total_capacity": 138,
+  "available_capacity": 0
+}
+
+###
+
+### Walawa A Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Walawa A",
+  "type": "female",
+  "total_capacity": 490,
+  "available_capacity": 32
+}
+
+###
+
+### Walawa B Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Walawa B",
+  "type": "female",
+  "total_capacity": 484,
+  "available_capacity": 56
+}
+
+###
+
+### Walawa C Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Walawa C",
+  "type": "female",
+  "total_capacity": 484,
+  "available_capacity": 98
+}
+
+###
+
+### Samanala 1 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Samanala 1",
+  "type": "female",
+  "total_capacity": 78,
+  "available_capacity": 0
+}
+
+###
+
+### Samanala 2 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Samanala 2",
+  "type": "female",
+  "total_capacity": 146,
+  "available_capacity": 15
+}
+
+###
+
+### Samanala 3 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Samanala 3",
+  "type": "female",
+  "total_capacity": 138,
+  "available_capacity": 59
+}
+
+### Male Hostels
+
+### Sinharaja 1 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sinharaja 1",
+  "type": "male",
+  "total_capacity": 80,
+  "available_capacity": 0
+}
+
+###
+
+### Sinharaja 2 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sinharaja 2",
+  "type": "male",
+  "total_capacity": 108,
+  "available_capacity": 2
+}
+
+###
+
+### Sinharaja 3 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sinharaja 3",
+  "type": "male",
+  "total_capacity": 102,
+  "available_capacity": 6
+}
+
+###
+
+### Sinharaja 4 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sinharaja 4",
+  "type": "male",
+  "total_capacity": 136,
+  "available_capacity": 12
+}
+
+###
+
+### Sinharaja 5 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sinharaja 5",
+  "type": "male",
+  "total_capacity": 296,
+  "available_capacity": 2
+}
+
+###
+
+### Sinharaja 6 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sinharaja 6",
+  "type": "male",
+  "total_capacity": 486,
+  "available_capacity": 80
+}
+
+###
+
+### Dilani Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Dilani",
+  "type": "male",
+  "total_capacity": 76,
+  "available_capacity": 0
+}
+
+###
+
+### Sangamiththa Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sangamiththa",
+  "type": "male",
+  "total_capacity": 44,
+  "available_capacity": 0
+}
+
+###
+
+### Sithum Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sithum",
+  "type": "male",
+  "total_capacity": 36,
+  "available_capacity": 0
+}
+
+###
+
+### Dayashanthi 1 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Dayashanthi 1",
+  "type": "male",
+  "total_capacity": 80,
+  "available_capacity": 0
+}
+
+###
+
+### Dayashanthi 2 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Dayashanthi 2",
+  "type": "male",
+  "total_capacity": 40,
+  "available_capacity": 19
+}
+
+###
+
+### Mahaweli 1 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Mahaweli 1",
+  "type": "male",
+  "total_capacity": 120,
+  "available_capacity": 57
+}
+
+###
+
+### Mahaweli 2 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Mahaweli 2",
+  "type": "male",
+  "total_capacity": 126,
+  "available_capacity": 5
+}
+
+###
+
+### Mapatuna Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Mapatuna",
+  "type": "male",
+  "total_capacity": 36,
+  "available_capacity": 0
+}
+
+###
+
+### Gunarathna 01 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Gunarathna - 01",
+  "type": "male",
+  "total_capacity": 46,
+  "available_capacity": 0
+}
+
+###
+
+### Gunarathna 02 Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Gunarathna - 02",
+  "type": "male",
+  "total_capacity": 46,
+  "available_capacity": 0
+}
+
+###
+
+### Sisira Hostel
+POST http://localhost:3000/api/hostels
+Content-Type: application/json
+
+{
+  "name": "Sisira",
+  "type": "male",
+  "total_capacity": 48,
+  "available_capacity": 0
+}
+
+###

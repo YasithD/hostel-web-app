@@ -10,6 +10,7 @@ import { ProgressRing } from "@/components/ui/progress-ring";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import axiosInstance from "@/utils/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -140,10 +141,7 @@ export default function RequestAccommodation() {
   const isReasonOther = form.watch("reason") === "other";
 
   async function onSubmit(values: FormData) {
-    await fetch("/api/request", {
-      method: "POST",
-      body: JSON.stringify(values),
-    });
+    await axiosInstance.post("/api/requests", values);
   }
 
   return (
