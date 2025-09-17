@@ -22,7 +22,7 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
   const data = response.data as Request & (InternalRequest | ExternalRequest);
 
   return (
-    <div className="flex flex-col gap-8 lg:mx-auto mx-4 mt-10 w-[580px] md:w-[1000px]">
+    <div className="flex flex-col gap-8 lg:mx-auto mx-4 mt-10 w-[580px] md:w-[1000px] mb-8">
       <BreadcrumbView />
 
       <div className="flex flex-col gap-2">
@@ -45,7 +45,6 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
           />
           <RequestDetailsSectionItem title="Created At" value={new Date(data.created_at!).toLocaleString()} />
           <RequestDetailsSectionItem title="Updated At" value={new Date(data.updated_at!).toLocaleString()} />
-          <RequestDetailsSectionItem title="Last Viewed At" value={new Date(data.last_viewed_at!).toLocaleString()} />
         </RequestDetailsSectionBody>
       </RequestDetailsSection>
 

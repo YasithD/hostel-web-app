@@ -1,9 +1,6 @@
 import BreadcrumbView from "@/components/Breadcrumb";
-import { HostelAllocationView } from "@/components/Hostel";
 import {
-  ApproveButton,
-  DeleteButton,
-  RejectButton,
+  RequestActions,
   RequestDetailsSectionBody,
   RequestDetailsSection,
   RequestDetailsSectionItem,
@@ -28,12 +25,13 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
   const hostelsResponse = await axiosInstance.get("/api/hostels");
   const hostels = hostelsResponse.data as Hostel[];
 
+  // TODO: Use this information for view mode
   /* Get hostel allocations */
   const hostelAllocationsResponse = await axiosInstance.get(`/api/allocations/${requestId}`);
   const hostelAllocations = hostelAllocationsResponse.data as HostelAllocation[];
 
   return (
-    <div className="flex flex-col gap-8 lg:mx-auto mx-4 mt-10 w-[580px] md:w-[1000px]">
+    <div className="flex flex-col gap-8 lg:mx-auto mx-4 mt-10 w-[580px] md:w-[1000px] mb-8">
       <BreadcrumbView />
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-primary">Request Details</h1>
@@ -92,25 +90,13 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
         </RequestDetailsSectionBody>
       </RequestDetailsSection>
 
-      <HostelAllocationView
+      <RequestActions
+        requestId={requestId}
         maleStudentCount={data.male_student_count}
         femaleStudentCount={data.female_student_count}
         hostels={hostels}
-        hostelAllocations={hostelAllocations}
-      >
-        <div className="flex flex-col gap-2">
-          <h2 className="text-lg font-bold">Hostel Allocations</h2>
-          <p className="text-sm">Allocate hostels to the students.</p>
-        </div>
-      </HostelAllocationView>
-
-      {data.status === "pending" && (
-        <div className="flex gap-2">
-          <ApproveButton btnClassName="bg-green-500 hover:bg-green-600" requestId={requestId} />
-          <RejectButton className="bg-red-500 hover:bg-red-600" requestId={requestId} />
-          <DeleteButton className="ml-auto" variant="outline" requestId={requestId} />
-        </div>
-      )}
+        status={data.status}
+      />
     </div>
   );
 }

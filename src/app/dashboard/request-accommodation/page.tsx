@@ -14,6 +14,7 @@ import axiosInstance from "@/utils/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -131,6 +132,8 @@ const defaultValues: FormData = {
 };
 
 export default function RequestAccommodation() {
+  const router = useRouter();
+
   const form = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: defaultValues,
@@ -142,6 +145,7 @@ export default function RequestAccommodation() {
 
   async function onSubmit(values: FormData) {
     await axiosInstance.post("/api/requests", values);
+    router.push("/dashboard/view-requests");
   }
 
   return (
@@ -421,7 +425,7 @@ export default function RequestAccommodation() {
       )}
 
       {/* Progress Ring */}
-      {form.formState.isSubmitting && (
+      {form.formState.isSubmitted && (
         <div className="flex flex-col h-full items-center justify-center gap-4">
           <ProgressRing className="w-20 h-20" />
           <p className="text-lg text-muted-foreground">Submitting...</p>

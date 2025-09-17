@@ -1,1 +1,1 @@
-export { default as HostelAllocationView } from "./HostelAllocationView";
+export { default as HostelAllocationView, type AllocationProps } from "./HostelAllocationView";

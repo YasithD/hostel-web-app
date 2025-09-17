@@ -92,7 +92,20 @@ export const deleteRequest = async (requestId: string) => {
 };
 
 export const updateRequest = async (requestId: string, data: any) => {
-  return await db.update(requests).set(data).where(eq(requests.id, requestId));
+  if (data.status && data.status === "approved") {
+    const allocations = data.hostelAllocations as HostelAllocation[];
+    const hostelsWithUpdatedCapacities = data.hostels as Hostel[];
+
+    return await db.batch([
+      db.update(requests).set({ status: "approved" }).where(eq(requests.id, requestId)),
+      ...allocations.map((allocation) => db.insert(hostelAllocations).values(allocation)),
+      ...hostelsWithUpdatedCapacities.map((hostel) =>
+        db.update(hostels).set({ available_capacity: hostel.available_capacity }).where(eq(hostels.id, hostel.id))
+      ),
+    ]);
+  } else {
+    return await db.update(requests).set(data).where(eq(requests.id, requestId));
+  }
 };
 
 export const getHostels = async () => {
@@ -117,8 +130,4 @@ export const deleteAllHostels = async () => {
 
 export const getHostelAllocations = async (requestId: string) => {
   return await db.select().from(hostelAllocations).where(eq(hostelAllocations.request_id, requestId));
-};
-
-export const addHostelAllocation = async (data: HostelAllocation) => {
-  return await db.insert(hostelAllocations).values(data);
 };

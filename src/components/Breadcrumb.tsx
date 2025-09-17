@@ -15,6 +15,10 @@ export default function BreadcrumbView() {
   const pathname = usePathname();
   const pathItems = pathname.split("/").filter((item) => item !== "");
   const modifiedPathItems = pathItems.map((item) => {
+    if (item === "dashboard") {
+      return "Home";
+    }
+
     if (isCuid(item)) {
       return "Request";
     }
@@ -28,7 +32,7 @@ export default function BreadcrumbView() {
     <Breadcrumb>
       <BreadcrumbList>
         {modifiedPathItems.map((item, index) => (
-          <Fragment key={item}>
+          <Fragment key={index}>
             <BreadcrumbItem>
               {index !== modifiedPathItems.length - 1 ? (
                 <BreadcrumbLink href={`/${pathItems.slice(0, index + 1).join("/")}`}>{item}</BreadcrumbLink>

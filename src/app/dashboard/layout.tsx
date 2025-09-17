@@ -20,6 +20,9 @@ export default function DashboardLayout({
           <p className="hidden md:block mr-8 text-base font-medium text-gray-700">Hello, Yasith</p>
           {/* Header content */}
           <div className="hidden md:flex items-center gap-4 mr-8">
+            <Link href="/dashboard/request-accommodation">
+              <p className="text-base font-medium text-primary">New Request</p>
+            </Link>
             <Link href="/dashboard/view-requests">
               <p className="text-base font-medium">My Requests</p>
             </Link>

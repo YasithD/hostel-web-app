@@ -72,14 +72,12 @@ body {
   }
 }
 
-.text-heading-1 {
-  @apply text-lg font-bold text-primary;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.text-heading-2 {
-  @apply text-base font-bold text-primary;
-}
-
-.text-paragraph {
-  @apply text-sm text-muted-foreground;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
