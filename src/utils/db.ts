@@ -98,7 +98,7 @@ export const updateRequest = async (requestId: string, action: RequestAction, da
     const hostelsWithUpdatedCapacities = data.hostels as Hostel[];
 
     return await db.batch([
-      db.update(requests).set({ status: "approved" }).where(eq(requests.id, requestId)),
+      db.update(requests).set({ status: "approved", updated_at: new Date() }).where(eq(requests.id, requestId)),
       ...allocations.map((allocation) => db.insert(hostelAllocations).values(allocation)),
       ...hostelsWithUpdatedCapacities.map((hostel) =>
         db.update(hostels).set({ available_capacity: hostel.available_capacity }).where(eq(hostels.id, hostel.id))
@@ -107,7 +107,10 @@ export const updateRequest = async (requestId: string, action: RequestAction, da
   } else if (action === REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT) {
     return await db.update(requests).set({ last_viewed_at: new Date() }).where(eq(requests.id, requestId));
   } else if (!!data) {
-    return await db.update(requests).set(data).where(eq(requests.id, requestId));
+    return await db
+      .update(requests)
+      .set({ ...data, updated_at: new Date() })
+      .where(eq(requests.id, requestId));
   }
 };
 
