@@ -6,6 +6,7 @@ import axiosInstance from "@/utils/axios";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { REQUEST_UPDATE_ACTIONS } from "@/types/db";
 
 type HostelSelectorProps = {
   requestId: string;
@@ -23,19 +24,21 @@ export default function HostelSelector(props: HostelSelectorProps) {
   /* Approve actions */
   const handleApprove = async () => {
     await axiosInstance.put(`/api/requests/${requestId}`, {
-      status: "approved",
       hostelAllocations: allocations.map((al) => ({
         hostel_id: al.hostelId,
         students_allocated: al.studentsAllocated,
         gender: al.gender,
       })),
+      action: REQUEST_UPDATE_ACTIONS.APPROVE_REQUEST,
     });
     router.push("/admin-dashboard");
   };
 
   /* Reject actions */
   const handleReject = async () => {
-    await axiosInstance.put(`/api/requests/${requestId}`, { status: "rejected" });
+    await axiosInstance.put(`/api/requests/${requestId}`, {
+      action: REQUEST_UPDATE_ACTIONS.REJECT_REQUEST,
+    });
     router.push("/admin-dashboard");
   };
 

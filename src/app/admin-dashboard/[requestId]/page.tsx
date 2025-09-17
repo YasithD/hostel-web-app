@@ -8,13 +8,14 @@ import {
 } from "@/components/request";
 import { ExternalRequest, Hostel, HostelAllocation, InternalRequest, Request } from "@/db/schema";
 import axiosInstance from "@/utils/axios";
+import { REQUEST_UPDATE_ACTIONS } from "@/types/db";
 
 export default async function ViewRequest({ params }: { params: Promise<{ requestId: string }> }) {
   const { requestId } = await params;
 
   /* Update last viewed at */
   await axiosInstance.put(`/api/requests/${requestId}`, {
-    last_viewed_at: new Date().getTime(),
+    action: REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT,
   });
 
   /* Get request details */

@@ -11,6 +11,7 @@ import {
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { createId } from "./uuid";
+import { REQUEST_UPDATE_ACTIONS, RequestAction } from "@/types/db";
 
 const submitInternalRequest = async (data: FormData) => {
   const requestId = createId()();
@@ -91,8 +92,8 @@ export const deleteRequest = async (requestId: string) => {
   return await db.delete(requests).where(eq(requests.id, requestId));
 };
 
-export const updateRequest = async (requestId: string, data: any) => {
-  if (data.status && data.status === "approved") {
+export const updateRequest = async (requestId: string, action: RequestAction, data?: any) => {
+  if (action === REQUEST_UPDATE_ACTIONS.APPROVE_REQUEST) {
     const allocations = data.hostelAllocations as HostelAllocation[];
     const hostelsWithUpdatedCapacities = data.hostels as Hostel[];
 
@@ -103,7 +104,9 @@ export const updateRequest = async (requestId: string, data: any) => {
         db.update(hostels).set({ available_capacity: hostel.available_capacity }).where(eq(hostels.id, hostel.id))
       ),
     ]);
-  } else {
+  } else if (action === REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT) {
+    return await db.update(requests).set({ last_viewed_at: new Date() }).where(eq(requests.id, requestId));
+  } else if (!!data) {
     return await db.update(requests).set(data).where(eq(requests.id, requestId));
   }
 };
