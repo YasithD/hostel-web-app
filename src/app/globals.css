@@ -92,3 +92,9 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+@layer utilities {
+  .bg-banner-image {
+    @apply bg-bannerImage bg-cover bg-bottom bg-repeat;
+  }
+}

@@ -1,18 +1,22 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.svg";
 import NotificationIcon from "@/public/notification_icon.svg";
+import { useRouter } from "next/navigation";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col h-screen">
       {/* Topbar */}
       <header className="flex w-full h-16 p-2 bg-white shadow-md flex-shrink-0">
-        <div className="relative w-28">
+        <div className="relative w-28 cursor-pointer" onClick={() => router.push("/dashboard")}>
           <Image src={Logo} alt="logo" fill />
         </div>
         <div className="flex items-center justify-between gap-4 ml-auto">

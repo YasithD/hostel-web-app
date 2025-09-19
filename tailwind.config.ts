@@ -69,6 +69,10 @@ export default {
         warning: "oklch(var(--warning))",
         danger: "oklch(var(--danger))",
       },
+      backgroundImage: {
+        bannerImage: "url('/banner.jpg')",
+        blackOverlay: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8))",
+      },
     },
   },
 } satisfies Config;
