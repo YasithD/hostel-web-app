@@ -7,7 +7,7 @@ export default function Dashboard() {
       <div className="flex flex-col w-4/5 md:w-[900px] gap-4">
         <div className="flex flex-col items-center gap-4 flex-1 p-4">
           <p className="text-5xl text-center font-semibold">SUSL Hostel Management System</p>
-          <p className="text-lg text-justify leading-8 text-gray-500">
+          <p className="text-lg text-justify leading-8 text-foreground-muted">
             A streamlined solution for managing accommodation requests. Deans can easily submit new hostel assignments,
             while designated authorities can quickly review, approve, or reject each request with full transparency.
             Enjoy a secure, efficient process that keeps everyone informed and on schedule.
@@ -18,7 +18,7 @@ export default function Dashboard() {
             <Button className="p-6 rounded-xl w-full md:w-auto">Request Accommodation</Button>
           </Link>
           <Link href="/dashboard/view-requests">
-            <Button className="p-6 rounded-xl w-full md:w-auto" variant="outline">
+            <Button className="p-6 rounded-xl w-full md:w-auto" variant="secondary">
               View Past Requests
             </Button>
           </Link>

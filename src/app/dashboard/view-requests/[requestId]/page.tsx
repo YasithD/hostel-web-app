@@ -28,7 +28,7 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
 
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-primary">Request Details</h1>
-        <p className="text-sm">View the details of your request.</p>
+        <p className="text-sm text-foreground-muted">View the details of your request.</p>
       </div>
 
       <RequestDetailsSection>

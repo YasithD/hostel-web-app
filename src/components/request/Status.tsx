@@ -8,10 +8,10 @@ export default function Status({ status }: StatusProps) {
   return (
     <div
       className={cn(
-        "px-2 py-1 rounded-md text-center text-background",
-        status === "pending" && "bg-yellow-500",
-        status === "approved" && "bg-green-500",
-        status === "rejected" && "bg-red-500"
+        "px-2 py-1 rounded-md text-center text-foreground-muted",
+        status === "pending" && "bg-warning",
+        status === "approved" && "bg-success",
+        status === "rejected" && "bg-danger"
       )}
     >
       {status.charAt(0).toUpperCase() + status.slice(1)}

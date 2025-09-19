@@ -61,12 +61,12 @@ export default function HostelSelector(props: HostelSelectorProps) {
         <div className="flex gap-2">
           <Button
             disabled={allocations.length === 0}
-            className="bg-green-500 hover:bg-green-600"
+            className="bg-success text-foreground-muted"
             onClick={handleApprove}
           >
             Approve
           </Button>
-          <Button className="bg-red-500 hover:bg-red-600" onClick={handleReject}>
+          <Button className="bg-danger text-foreground-muted" onClick={handleReject}>
             Reject
           </Button>
           <Button className="ml-auto" variant="outline" onClick={handleDelete}>
