@@ -97,4 +97,12 @@ input[type="number"] {
   .bg-banner-image {
     @apply bg-bannerImage bg-cover bg-bottom bg-repeat;
   }
+
+  .card {
+    background: linear-gradient(0deg, oklch(var(--bg)) 95%, oklch(var(--bg-dark)))
+  }
+
+  .card:hover {
+    background: linear-gradient(0deg, oklch(var(--bg)), oklch(var(--bg-dark)))
+  }
 }
