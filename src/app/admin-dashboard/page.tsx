@@ -17,7 +17,7 @@ export default async function AdminDashboard() {
         <h1 className="text-2xl font-bold text-primary">Request History</h1>
         <p className="text-sm">View the requests and their status.</p>
       </div>
-      <Table>
+      <Table className="min-w-full">
         <TableHeader>
           <TableRow>
             <TableHead>Request Id</TableHead>
@@ -26,20 +26,19 @@ export default async function AdminDashboard() {
             <TableHead className="hidden md:table-cell">Requested Date</TableHead>
             <TableHead className="hidden md:table-cell">Last Updated</TableHead>
             <TableHead>Request Status</TableHead>
-            <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.map((request, index) => (
             <TableRow key={index}>
-              <TableCell>{request.id}</TableCell>
+              <TableCell className="w-[150px] md:w-auto">{request.id}</TableCell>
               <TableCell className="hidden md:table-cell">{request.user_id}</TableCell>
               <TableCell className="hidden md:table-cell">
                 {request.type.charAt(0).toUpperCase() + request.type.slice(1)}
               </TableCell>
               <TableCell className="hidden md:table-cell">{format(request.created_at!, "PPP")}</TableCell>
               <TableCell className="hidden md:table-cell">{format(request.updated_at!, "PPP")}</TableCell>
-              <TableCell>
+              <TableCell className="w-[200px] md:w-auto">
                 <Status status={request.status} />
               </TableCell>
               <TableCell>

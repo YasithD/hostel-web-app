@@ -9,7 +9,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen overflow-y-auto overflow-x-hidden">
       {/* Topbar */}
       <header className="flex w-full h-16 p-2 bg-white shadow-md flex-shrink-0">
         <div className="relative w-28">
@@ -34,7 +34,12 @@ export default function DashboardLayout({
       </header>
 
       {/* Main content area */}
-      <main className="flex-1 overflow-auto">{children}</main>
+      <main className="w-full overflow-x-auto">{children}</main>
+
+      {/* Footer */}
+      <footer className="flex items-center justify-center w-full h-10 px-4 border-t mt-auto">
+        <p className="text-sm font-medium text-muted">© Copyright SUSL 2025. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

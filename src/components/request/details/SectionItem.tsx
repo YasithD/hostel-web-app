@@ -8,7 +8,7 @@ export default function RequestDetailsSectionItem(props: RequestDetailsSectionIt
 
   return (
     <div className="flex gap-2 border-t py-4">
-      <h3 className="text-sm text-muted-foreground font-medium w-[400px]">{title}</h3>
+      <h3 className="text-sm text-muted font-medium w-[200px] sm:w-[400px]">{title}</h3>
       <p className="text-sm">{value}</p>
     </div>
   );
