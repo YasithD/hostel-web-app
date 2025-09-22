@@ -98,6 +98,10 @@ input[type="number"] {
     @apply bg-bannerImage bg-cover bg-bottom bg-repeat;
   }
 
+  .bg-login-image {
+    @apply bg-loginImage bg-cover bg-bottom bg-no-repeat;
+  }
+
   .card {
     background: linear-gradient(0deg, oklch(var(--bg)) 95%, oklch(var(--bg-dark)))
   }

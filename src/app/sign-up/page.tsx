@@ -11,18 +11,20 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 const formSchema = yup.object({
-  email: yup.string().email("Invalid email address").required("Email is required"),
-  password: yup.string().required("Password is required"),
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  suslEmail: yup.string().email("Invalid email address").required("Email is required"),
 });
 
 type FormData = yup.InferType<typeof formSchema>;
 
 const defaultValues: FormData = {
-  email: "",
-  password: "",
+  firstName: "",
+  lastName: "",
+  suslEmail: "",
 };
 
-export default function Login() {
+export default function SignUp() {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
   const form = useForm({
@@ -48,17 +50,17 @@ export default function Login() {
           <br />
           SUSL Hostel Management System
         </p>
-        <p className="text-sm text-muted">Login to your account to continue</p>
+        <p className="text-sm text-muted">Send your details and our admin will contact you to create an account</p>
 
-        {/* Login Form */}
+        {/* Sign Up Form */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
             <FormField
               control={form.control}
-              name="email"
+              name="firstName"
               render={({ field }) => (
                 <FormItem className="relative">
-                  <FormLabel className="text-foreground">Email</FormLabel>
+                  <FormLabel className="text-foreground">First Name</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -68,42 +70,32 @@ export default function Login() {
             />
             <FormField
               control={form.control}
-              name="password"
+              name="lastName"
               render={({ field }) => (
                 <FormItem className="relative">
-                  <FormLabel className="text-foreground">Password</FormLabel>
+                  <FormLabel className="text-foreground">Last Name</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input type={isPasswordVisible ? "text" : "password"} className="pr-8" {...field} />
-                      {isPasswordVisible ? (
-                        <EyeClosed
-                          size={18}
-                          color="#4d4d4d"
-                          className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
-                          onClick={togglePasswordVisibility}
-                        />
-                      ) : (
-                        <Eye
-                          size={18}
-                          color="#4d4d4d"
-                          className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
-                          onClick={togglePasswordVisibility}
-                        />
-                      )}
-                    </div>
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage className="absolute bottom-0 translate-y-full pt-1" />
-                  <div className="flex justify-end">
-                    <Link href="/login/forgot-password">
-                      <p className="text-sm text-muted">Forgot Password?</p>
-                    </Link>
-                  </div>
                 </FormItem>
               )}
             />
-
+            <FormField
+              control={form.control}
+              name="suslEmail"
+              render={({ field }) => (
+                <FormItem className="relative">
+                  <FormLabel className="text-foreground">SUSL Email</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage className="absolute bottom-0 translate-y-full pt-1" />
+                </FormItem>
+              )}
+            />
             <Button className="w-full" type="submit" disabled={!form.formState.isValid || form.formState.isSubmitting}>
-              Login
+              Send Details
             </Button>
           </form>
         </Form>
