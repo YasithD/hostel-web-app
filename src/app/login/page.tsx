@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { getLoginErrorMessage } from "@/utils/errors";
+import { useAuth, useSignIn } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeClosed } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +26,7 @@ const defaultValues: FormData = {
 
 export default function Login() {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
+  const { signIn, setActive, isLoaded } = useSignIn();
 
   const form = useForm({
     resolver: yupResolver(formSchema),
@@ -32,7 +35,39 @@ export default function Login() {
   });
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
+    if (!isLoaded) {
+      alert("Please wait while we are loading the page.");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      return;
+    }
+
+    try {
+      /* Try to sign in */
+      const result = await signIn.create({
+        identifier: data.email,
+        password: data.password,
+      });
+
+      /* If the sign in is not complete, show the error */
+      if (result.status !== "complete") {
+        console.log(JSON.stringify(result, null, 2));
+      }
+
+      /* If the sign in is complete, set the active session */
+      if (result.status === "complete") {
+        await setActive({ session: result.createdSessionId });
+      }
+    } catch (error: any) {
+      console.log(error.message);
+      const errorMessage = getLoginErrorMessage(error.message);
+      if (errorMessage) {
+        form.setError(errorMessage.key, { message: errorMessage.message });
+      } else {
+        console.log(">>> Error on login: ", error.message);
+      }
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -62,7 +97,7 @@ export default function Login() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage className="absolute bottom-0 translate-y-full pt-1" />
+                  <FormMessage className="absolute my-0 bottom-0 translate-y-full pt-1" />
                 </FormItem>
               )}
             />
@@ -90,9 +125,9 @@ export default function Login() {
                           onClick={togglePasswordVisibility}
                         />
                       )}
+                      <FormMessage className="absolute my-0 bottom-0 translate-y-full pt-1" />
                     </div>
                   </FormControl>
-                  <FormMessage className="absolute bottom-0 translate-y-full pt-1" />
                   <div className="flex justify-end">
                     <Link href="/login/forgot-password">
                       <p className="text-sm text-muted">Forgot Password?</p>
