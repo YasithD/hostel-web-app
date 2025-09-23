@@ -8,6 +8,13 @@
       "when": 1750164852354,
       "tag": "0000_lowly_bloodscream",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1758608775522,
+      "tag": "0001_closed_mimic",
+      "breakpoints": true
     }
   ]
 }

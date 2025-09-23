@@ -77,7 +77,7 @@ export default function Login() {
   return (
     <div className="h-full flex items-center justify-center">
       {/* Form Section */}
-      <div className="flex flex-col gap-4 items-center justify-center p-16 md:w-[600px] md:shadow-lg rounded-md bg-background">
+      <div className="flex flex-col gap-4 items-center justify-center p-16 md:w-[500px] md:shadow-lg rounded-md bg-background">
         <p className="text-2xl font-semibold text-center">
           Welcome to
           <br />

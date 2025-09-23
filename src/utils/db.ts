@@ -8,6 +8,8 @@ import {
   hostels,
   internalRequests,
   requests,
+  User,
+  users,
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { createId } from "./uuid";
@@ -136,4 +138,8 @@ export const deleteAllHostels = async () => {
 
 export const getHostelAllocations = async (requestId: string) => {
   return await db.select().from(hostelAllocations).where(eq(hostelAllocations.request_id, requestId));
+};
+
+export const addUser = async (data: User) => {
+  return await db.insert(users).values(data);
 };

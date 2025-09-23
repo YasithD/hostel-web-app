@@ -56,6 +56,15 @@ export const hostelAllocations = sqliteTable("hostel_allocations", {
   students_allocated: integer("students_allocated").notNull(),
 });
 
+export const users = sqliteTable("users", {
+  email: text("email").notNull().primaryKey(),
+  first_name: text("first_name").notNull(),
+  last_name: text("last_name").notNull(),
+  account_activation: text("account_activation", { enum: ["pending", "active", "inactive"] })
+    .notNull()
+    .default("pending"),
+});
+
 // Define relationships
 export const requestsRelations = relations(requests, ({ one, many }) => ({
   internalRequest: one(internalRequests, {
@@ -104,3 +113,4 @@ export type InternalRequest = typeof internalRequests.$inferSelect;
 export type ExternalRequest = typeof externalRequests.$inferSelect;
 export type Hostel = typeof hostels.$inferSelect;
 export type HostelAllocation = typeof hostelAllocations.$inferSelect;
+export type User = typeof users.$inferSelect;

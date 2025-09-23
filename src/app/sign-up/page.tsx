@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import axiosInstance from "@/utils/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeClosed } from "lucide-react";
 import Link from "next/link";
@@ -34,7 +35,14 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
+    /* Submit user details to the API */
+    const result = await axiosInstance.post("/api/user", {
+      email: data.suslEmail,
+      first_name: data.firstName,
+      last_name: data.lastName,
+    });
+
+    console.log(">>> User details submitted: ", result);
   };
 
   const togglePasswordVisibility = () => {
@@ -44,7 +52,7 @@ export default function SignUp() {
   return (
     <div className="h-full flex items-center justify-center">
       {/* Form Section */}
-      <div className="flex flex-col gap-4 items-center justify-center p-16 md:w-[600px] md:shadow-lg rounded-md bg-background">
+      <div className="flex flex-col gap-4 items-center justify-center p-16 md:w-[500px] md:shadow-lg rounded-md bg-background">
         <p className="text-2xl font-semibold text-center">
           Welcome to
           <br />
