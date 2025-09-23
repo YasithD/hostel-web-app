@@ -109,4 +109,8 @@ input[type="number"] {
   .card:hover {
     background: linear-gradient(0deg, oklch(var(--bg)), oklch(var(--bg-dark)))
   }
+
+  .admin-dashboard-card {
+    @apply h-60 flex flex-col gap-4 p-8 rounded-lg shadow-lg cursor-pointer hover:bg-gradient-to-b hover:from-card hover:to-card-foreground hover:translate-y-1;
+  }
 }

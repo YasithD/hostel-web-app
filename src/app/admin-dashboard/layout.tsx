@@ -21,7 +21,7 @@ export default function DashboardLayout({
           {/* Header content */}
           <div className="hidden md:flex items-center gap-4 mr-8">
             <Link href="/dashboard/view-requests">
-              <p className="text-base font-medium">My Requests</p>
+              <p className="text-base font-medium">Requests</p>
             </Link>
           </div>
           {/* Notification bell */}

@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, primaryKey } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
 import { createId } from "@/utils/uuid";
 
@@ -56,14 +56,19 @@ export const hostelAllocations = sqliteTable("hostel_allocations", {
   students_allocated: integer("students_allocated").notNull(),
 });
 
-export const users = sqliteTable("users", {
-  email: text("email").notNull().primaryKey(),
-  first_name: text("first_name").notNull(),
-  last_name: text("last_name").notNull(),
-  account_activation: text("account_activation", { enum: ["pending", "active", "inactive"] })
-    .notNull()
-    .default("pending"),
-});
+export const users = sqliteTable(
+  "users",
+  {
+    id: text("id").notNull().$defaultFn(createId()),
+    email: text("email").notNull(),
+    first_name: text("first_name").notNull(),
+    last_name: text("last_name").notNull(),
+    account_activation: text("account_activation", { enum: ["pending", "active", "inactive"] })
+      .notNull()
+      .default("pending"),
+  },
+  (table) => [primaryKey({ columns: [table.id, table.email] })]
+);
 
 // Define relationships
 export const requestsRelations = relations(requests, ({ one, many }) => ({

@@ -1,55 +1,39 @@
-import axiosInstance from "@/utils/axios";
-import { Request } from "@/db/schema";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { format } from "date-fns";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Status } from "@/components/request";
+"use client";
 
-export default async function AdminDashboard() {
-  const response = await axiosInstance.get("/api/requests");
-  const data = response.data as Request[];
+import { File, House, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+export default function AdminDashboard() {
+  const router = useRouter();
 
   return (
-    <div className="flex flex-col gap-8 lg:mx-auto mx-4 mt-10 w-[580px] md:w-[1000px]">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-primary">Request History</h1>
-        <p className="text-sm">View the requests and their status.</p>
+    <div className="flex flex-col h-full gap-8 p-10">
+      <p className="text-2xl font-semibold text-primary">Admin Dashboard</p>
+
+      {/* Graphs */}
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
+        <div className="flex items-center justify-center bg-gray-100 h-60">Graph 1</div>
+        <div className="flex items-center justify-center bg-gray-100 h-60">Graph 2</div>
       </div>
-      <Table className="min-w-full">
-        <TableHeader>
-          <TableRow>
-            <TableHead>Request Id</TableHead>
-            <TableHead className="hidden md:table-cell">Requested By</TableHead>
-            <TableHead className="hidden md:table-cell">Request Type</TableHead>
-            <TableHead className="hidden md:table-cell">Requested Date</TableHead>
-            <TableHead className="hidden md:table-cell">Last Updated</TableHead>
-            <TableHead>Request Status</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((request, index) => (
-            <TableRow key={index}>
-              <TableCell className="w-[150px] md:w-auto">{request.id}</TableCell>
-              <TableCell className="hidden md:table-cell">{request.user_id}</TableCell>
-              <TableCell className="hidden md:table-cell">
-                {request.type.charAt(0).toUpperCase() + request.type.slice(1)}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">{format(request.created_at!, "PPP")}</TableCell>
-              <TableCell className="hidden md:table-cell">{format(request.updated_at!, "PPP")}</TableCell>
-              <TableCell className="w-[200px] md:w-auto">
-                <Status status={request.status} />
-              </TableCell>
-              <TableCell>
-                <Link href={`/admin-dashboard/${request.id}`}>
-                  <Button variant="outline">More</Button>
-                </Link>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+
+      {/* Actions */}
+      <div className="grid md:grid-cols-3 gap-4">
+        <div className="admin-dashboard-card">
+          <House className="self-center" size={32} />
+          <p className="self-center text-lg font-semibold">Add/Edit Hostel</p>
+          <p className="text-sm text-muted">Add or edit hostels in the system.</p>
+        </div>
+        <div className="admin-dashboard-card" onClick={() => router.push("/admin-dashboard/users")}>
+          <User className="self-center" size={32} />
+          <p className="self-center text-lg font-semibold">Manage Users</p>
+          <p className="text-sm text-muted">Manage users in the system.</p>
+        </div>
+        <div className="admin-dashboard-card" onClick={() => router.push("/admin-dashboard/requests")}>
+          <File className="self-center" size={32} />
+          <p className="self-center text-lg font-semibold">Manage Requests</p>
+          <p className="text-sm text-muted">Manage requests in the system.</p>
+        </div>
+      </div>
     </div>
   );
 }

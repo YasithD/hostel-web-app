@@ -5,8 +5,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import axiosInstance from "@/utils/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Eye, EyeClosed } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -36,7 +34,7 @@ export default function SignUp() {
 
   const onSubmit = async (data: FormData) => {
     /* Submit user details to the API */
-    const result = await axiosInstance.post("/api/user", {
+    const result = await axiosInstance.post("/api/users", {
       email: data.suslEmail,
       first_name: data.firstName,
       last_name: data.lastName,

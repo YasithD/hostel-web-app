@@ -13,7 +13,13 @@ import {
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { createId } from "./uuid";
-import { REQUEST_UPDATE_ACTIONS, RequestAction } from "@/types/db";
+import {
+  ACCOUNT_ACTIVATION_STATUS,
+  REQUEST_UPDATE_ACTIONS,
+  AccountActivationStatus,
+  RequestAction,
+  UserActions,
+} from "@/types/db";
 
 const submitInternalRequest = async (data: FormData) => {
   const requestId = createId()();
@@ -142,4 +148,23 @@ export const getHostelAllocations = async (requestId: string) => {
 
 export const addUser = async (data: User) => {
   return await db.insert(users).values(data);
+};
+
+export const getUsers = async () => {
+  return await db.select().from(users);
+};
+
+const isAccountActivationStatus = (action: UserActions): action is AccountActivationStatus => {
+  return Object.values(ACCOUNT_ACTIVATION_STATUS).includes(action);
+};
+
+export const updateUser = async (userId: string, action?: UserActions, data?: any) => {
+  if (action && isAccountActivationStatus(action)) {
+    return await db.update(users).set({ account_activation: action }).where(eq(users.id, userId));
+  } else if (!!data) {
+    return await db
+      .update(users)
+      .set({ ...data })
+      .where(eq(users.id, userId));
+  }
 };

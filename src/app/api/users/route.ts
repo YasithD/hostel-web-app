@@ -1,5 +1,5 @@
 import { User } from "@/db/schema";
-import { addUser } from "@/utils/db";
+import { addUser, getUsers } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -14,5 +14,14 @@ export async function POST(req: NextRequest) {
     }
   } catch (error) {
     return new Response(JSON.stringify({ error: `Failed to add user: ${error}` }), { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    const users = await getUsers();
+    return new Response(JSON.stringify(users), { status: 200 });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: `Failed to get users: ${error}` }), { status: 500 });
   }
 }

@@ -5,3 +5,13 @@ export const REQUEST_UPDATE_ACTIONS = {
 } as const;
 
 export type RequestAction = (typeof REQUEST_UPDATE_ACTIONS)[keyof typeof REQUEST_UPDATE_ACTIONS];
+
+export const ACCOUNT_ACTIVATION_STATUS = {
+  PENDING: "pending",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+} as const;
+
+export type AccountActivationStatus = (typeof ACCOUNT_ACTIVATION_STATUS)[keyof typeof ACCOUNT_ACTIVATION_STATUS];
+
+export type UserActions = AccountActivationStatus;
