@@ -31,7 +31,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
       })),
       action: REQUEST_UPDATE_ACTIONS.APPROVE_REQUEST,
     });
-    router.push("/admin-dashboard");
+    router.push("/admin/dashboard");
   };
 
   /* Reject actions */
@@ -39,7 +39,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
     await axiosInstance.put(`/api/requests/${requestId}`, {
       action: REQUEST_UPDATE_ACTIONS.REJECT_REQUEST,
     });
-    router.push("/admin-dashboard");
+    router.push("/admin/dashboard");
   };
 
   /* Delete actions */

@@ -18,17 +18,17 @@ export default function AdminDashboard() {
 
       {/* Actions */}
       <div className="grid md:grid-cols-3 gap-4">
-        <div className="admin-dashboard-card" onClick={() => router.push("/admin-dashboard/hostels")}>
+        <div className="admin-dashboard-card" onClick={() => router.push("/admin/dashboard/hostels")}>
           <House className="self-center" size={32} />
           <p className="self-center text-lg font-semibold">Add/Edit Hostel</p>
           <p className="text-sm text-muted text-center">Add or edit hostels in the system.</p>
         </div>
-        <div className="admin-dashboard-card" onClick={() => router.push("/admin-dashboard/users")}>
+        <div className="admin-dashboard-card" onClick={() => router.push("/admin/dashboard/users")}>
           <User className="self-center" size={32} />
           <p className="self-center text-lg font-semibold">Manage Users</p>
           <p className="text-sm text-muted text-center">Manage users in the system.</p>
         </div>
-        <div className="admin-dashboard-card" onClick={() => router.push("/admin-dashboard/requests")}>
+        <div className="admin-dashboard-card" onClick={() => router.push("/admin/dashboard/requests")}>
           <File className="self-center" size={32} />
           <p className="self-center text-lg font-semibold">Manage Requests</p>
           <p className="text-sm text-muted text-center">Manage requests in the system.</p>

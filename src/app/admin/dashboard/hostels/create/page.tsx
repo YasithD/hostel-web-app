@@ -54,7 +54,7 @@ export default function CreateHostel() {
       available_capacity: values.availableCapacity,
     });
 
-    router.push("/admin-dashboard/hostels");
+    router.push("/admin/dashboard/hostels");
   }
 
   return (

@@ -16,7 +16,7 @@ export default async function Hostels() {
           <h1 className="text-2xl font-bold text-primary">Manage Hostels</h1>
           <p className="text-sm">View the hostels and their details.</p>
         </div>
-        <Link href="/admin-dashboard/hostels/create">
+        <Link href="/admin/dashboard/hostels/create">
           <Button>
             <PlusIcon size={16} />
             Add Hostel
@@ -40,7 +40,7 @@ export default async function Hostels() {
               <TableCell>{hostel.total_capacity}</TableCell>
               <TableCell>{hostel.available_capacity}</TableCell>
               <TableCell>
-                <Link href={`/admin-dashboard/hostels/edit/${hostel.id}`}>
+                <Link href={`/admin/dashboard/hostels/edit/${hostel.id}`}>
                   <Button variant="outline">
                     <PencilIcon size={16} />
                     Edit

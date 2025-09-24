@@ -41,7 +41,7 @@ export default async function AdminDashboard() {
                 <Status status={request.status} />
               </TableCell>
               <TableCell>
-                <Link href={`/admin-dashboard/requests/${request.id}`}>
+                <Link href={`/admin/dashboard/requests/${request.id}`}>
                   <Button variant="outline">More</Button>
                 </Link>
               </TableCell>
