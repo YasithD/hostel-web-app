@@ -15,8 +15,8 @@ type ActionConditionalProps =
       userId: string;
     }
   | {
-      enableActions: never;
-      userId: never;
+      enableActions?: never;
+      userId?: never;
     };
 
 type StatusProps = ActionConditionalProps & {

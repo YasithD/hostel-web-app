@@ -126,6 +126,10 @@ export const getHostels = async () => {
   return await db.select().from(hostels);
 };
 
+export const getHostel = async (hostelId: string) => {
+  return await db.select().from(hostels).where(eq(hostels.id, hostelId));
+};
+
 export const addHostel = async (data: Hostel) => {
   return await db.insert(hostels).values(data);
 };
