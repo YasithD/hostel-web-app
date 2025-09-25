@@ -2,13 +2,13 @@ import { UserActions } from "@/types/db";
 import { updateUser } from "@/utils/db";
 import { NextRequest } from "next/server";
 
-export async function PUT(request: NextRequest, { params }: { params: { requestId: string } }) {
-  const { requestId } = await params;
-  const body = (await request.json()) as { action?: UserActions; data?: any };
-  const { action, data } = body;
+export async function PUT(request: NextRequest, { params }: { params: { userId: string } }) {
+  const { userId } = await params;
+  const body = (await request.json()) as { action?: UserActions; payload?: any };
+  const { action, payload } = body;
 
   try {
-    const response = await updateUser(requestId, action, data);
+    const response = await updateUser(userId, action, payload);
     if (response?.success) {
       return new Response("User updated successfully", { status: 200 });
     } else {

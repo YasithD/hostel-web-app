@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { getLoginErrorMessage } from "@/utils/errors";
-import { useAuth, useSignIn } from "@clerk/nextjs";
+import { useSignIn } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeClosed } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -27,6 +28,7 @@ const defaultValues: FormData = {
 export default function Login() {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const { signIn, setActive, isLoaded } = useSignIn();
+  const router = useRouter();
 
   const form = useForm({
     resolver: yupResolver(formSchema),
@@ -53,11 +55,13 @@ export default function Login() {
       /* If the sign in is not complete, show the error */
       if (result.status !== "complete") {
         console.log(JSON.stringify(result, null, 2));
+        return;
       }
 
       /* If the sign in is complete, set the active session */
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
+        router.push("/dashboard");
       }
     } catch (error: any) {
       console.log(error.message);
