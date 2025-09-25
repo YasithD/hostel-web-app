@@ -14,4 +14,5 @@ export const isLoggedInUser = async () => {
   if (!userId) {
     return false;
   }
+  return true;
 };
