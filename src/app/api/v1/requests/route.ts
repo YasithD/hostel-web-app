@@ -4,7 +4,7 @@ import { getRequests, submitRequest } from "@/utils/db";
 import { type NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-  if (!isLoggedInUser()) {
+  if (!(await isLoggedInUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  if (!isLoggedInUser()) {
+  if (!(await isLoggedInUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 

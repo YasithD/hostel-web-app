@@ -4,7 +4,7 @@ import { getHostel, updateHostel } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { hostelId: string } }) {
-  if (!isAdminUser()) {
+  if (!(await isAdminUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, { params }: { params: { hostelId
 }
 
 export async function PUT(request: NextRequest, { params }: { params: { hostelId: string } }) {
-  if (!isAdminUser()) {
+  if (!(await isAdminUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 

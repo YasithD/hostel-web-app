@@ -4,7 +4,7 @@ import { updateUser } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function PUT(request: NextRequest, { params }: { params: { userId: string } }) {
-  if (!isLoggedInUser()) {
+  if (!(await isLoggedInUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 

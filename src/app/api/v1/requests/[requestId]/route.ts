@@ -5,7 +5,7 @@ import { REQUEST_UPDATE_ACTIONS, RequestAction } from "@/types/db";
 import { isLoggedInUser } from "@/utils/auth";
 
 export async function GET(request: NextRequest, { params }: { params: { requestId: string } }) {
-  if (!isLoggedInUser()) {
+  if (!(await isLoggedInUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, { params }: { params: { requestI
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: { requestId: string } }) {
-  if (!isLoggedInUser()) {
+  if (!(await isLoggedInUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 
@@ -37,7 +37,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { reque
 }
 
 export async function PUT(request: NextRequest, { params }: { params: { requestId: string } }) {
-  if (!isLoggedInUser()) {
+  if (!(await isLoggedInUser())) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 
