@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Status } from "@/components/request";
 
 export default async function AdminDashboard() {
-  const response = await axiosInstance.get("/api/users");
+  const response = await axiosInstance.get("/api/v1/users");
   const data = response.data as User[];
 
   return (

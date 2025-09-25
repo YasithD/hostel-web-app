@@ -144,7 +144,7 @@ export default function RequestAccommodation() {
   const isReasonOther = form.watch("reason") === "other";
 
   async function onSubmit(values: FormData) {
-    await axiosInstance.post("/api/requests", values);
+    await axiosInstance.post("/api/v1/requests", values);
     router.push("/dashboard/view-requests");
   }
 

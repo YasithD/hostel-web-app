@@ -14,12 +14,12 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
   const { requestId } = await params;
 
   /* Update last viewed at */
-  await axiosInstance.put(`/api/requests/${requestId}`, {
+  await axiosInstance.put(`/api/v1/requests/${requestId}`, {
     action: REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT,
   });
 
   /* Get request details */
-  const response = await axiosInstance.get(`/api/requests/${requestId}`);
+  const response = await axiosInstance.get(`/api/v1/requests/${requestId}`);
   const data = response.data as Request & (InternalRequest | ExternalRequest);
 
   return (

@@ -14,21 +14,21 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
   const { requestId } = await params;
 
   /* Update last viewed at */
-  await axiosInstance.put(`/api/requests/${requestId}`, {
+  await axiosInstance.put(`/api/v1/requests/${requestId}`, {
     action: REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT,
   });
 
   /* Get request details */
-  const response = await axiosInstance.get(`/api/requests/${requestId}`);
+  const response = await axiosInstance.get(`/api/v1/requests/${requestId}`);
   const data = response.data as Request & (InternalRequest | ExternalRequest);
 
   /* Get hostels */
-  const hostelsResponse = await axiosInstance.get("/api/hostels");
+  const hostelsResponse = await axiosInstance.get("/api/v1/hostels");
   const hostels = hostelsResponse.data as Hostel[];
 
   // TODO: Use this information for view mode
   /* Get hostel allocations */
-  const hostelAllocationsResponse = await axiosInstance.get(`/api/allocations/${requestId}`);
+  const hostelAllocationsResponse = await axiosInstance.get(`/api/v1/allocations/${requestId}`);
   const hostelAllocations = hostelAllocationsResponse.data as HostelAllocation[];
 
   return (

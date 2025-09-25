@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Status } from "@/components/request";
 
 export default async function AdminDashboard() {
-  const response = await axiosInstance.get("/api/requests");
+  const response = await axiosInstance.get("/api/v1/requests");
   const data = response.data as Request[];
 
   return (

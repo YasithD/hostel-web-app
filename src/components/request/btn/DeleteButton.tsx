@@ -19,7 +19,7 @@ export default function RequestDeleteButton(props: RequestDeleteButtonProps) {
   const router = useRouter();
 
   const handleDelete = async () => {
-    await axiosInstance.delete(`/api/requests/${requestId}`);
+    await axiosInstance.delete(`/api/v1/requests/${requestId}`);
     router.push("/dashboard/view-requests");
   };
 

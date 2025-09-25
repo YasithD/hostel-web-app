@@ -23,7 +23,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
 
   /* Approve actions */
   const handleApprove = async () => {
-    await axiosInstance.put(`/api/requests/${requestId}`, {
+    await axiosInstance.put(`/api/v1/requests/${requestId}`, {
       hostelAllocations: allocations.map((al) => ({
         hostel_id: al.hostelId,
         students_allocated: al.studentsAllocated,
@@ -36,7 +36,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
 
   /* Reject actions */
   const handleReject = async () => {
-    await axiosInstance.put(`/api/requests/${requestId}`, {
+    await axiosInstance.put(`/api/v1/requests/${requestId}`, {
       action: REQUEST_UPDATE_ACTIONS.REJECT_REQUEST,
     });
     router.push("/admin/dashboard");
@@ -44,7 +44,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
 
   /* Delete actions */
   const handleDelete = async () => {
-    await axiosInstance.delete(`/api/requests/${requestId}`);
+    await axiosInstance.delete(`/api/v1/requests/${requestId}`);
     router.push("/dashboard/view-requests");
   };
 

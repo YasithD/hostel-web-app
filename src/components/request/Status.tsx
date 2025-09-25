@@ -100,7 +100,7 @@ export default function Status({ status, enableActions: enablePopup = false, use
   }, [isPopupOpen]);
 
   const onActivate = async () => {
-    await axiosInstance.put(`/api/users/${userId}`, {
+    await axiosInstance.put(`/api/v1/users/${userId}`, {
       action: ACCOUNT_ACTIVATION_STATUS.ACTIVE,
     });
     setIsPopupOpen(false);

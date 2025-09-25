@@ -5,7 +5,7 @@ import HostelEditView from "@/components/Hostel/HostelEditView";
 export default async function CreateHostel({ params }: { params: Promise<{ hostelId: string }> }) {
   const { hostelId } = await params;
 
-  const response = await axiosInstance.get(`/api/hostels/${hostelId}`);
+  const response = await axiosInstance.get(`/api/v1/hostels/${hostelId}`);
   const data = response.data as Hostel;
 
   return (

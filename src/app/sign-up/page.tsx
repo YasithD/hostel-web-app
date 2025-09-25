@@ -34,7 +34,7 @@ export default function SignUp() {
 
   const onSubmit = async (data: FormData) => {
     /* Submit user details to the API */
-    const result = await axiosInstance.post("/api/users", {
+    const result = await axiosInstance.post("/api/v1/users", {
       email: data.suslEmail,
       first_name: data.firstName,
       last_name: data.lastName,

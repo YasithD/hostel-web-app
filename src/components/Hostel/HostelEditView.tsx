@@ -56,7 +56,7 @@ export default function HostelEditView({
   });
 
   async function onSubmit(values: FormData) {
-    await axiosInstance.put(`/api/hostels/${hostelId}`, {
+    await axiosInstance.put(`/api/v1/hostels/${hostelId}`, {
       name: values.name,
       type: values.type,
       total_capacity: values.totalCapacity,

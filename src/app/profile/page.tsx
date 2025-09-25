@@ -38,7 +38,7 @@ export default function Profile() {
 
   useEffect(() => {
     const updateUserInfo = async () => {
-      const result = await axiosInstance.get(`/api/users`);
+      const result = await axiosInstance.get(`/api/v1/users`);
       const currentUser = result.data.find((dbUser: User) => dbUser.email === user?.emailAddresses[0].emailAddress);
       setUserId(currentUser?.id);
       form.reset({
@@ -54,7 +54,7 @@ export default function Profile() {
       return;
     }
 
-    const result = await axiosInstance.put(`/api/users/${userId}`, {
+    const result = await axiosInstance.put(`/api/v1/users/${userId}`, {
       payload: {
         first_name: data.firstName,
         last_name: data.lastName,

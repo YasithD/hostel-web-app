@@ -1,7 +1,7 @@
 ### Female Hostels
 
 ### Gunawardena Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 ###
 
 ### Chandrika Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 ### Karawita Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -40,7 +40,7 @@ Content-Type: application/json
 ###
 
 ### Kumarathunga Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json
 ###
 
 ### Chithralatha Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -66,7 +66,7 @@ Content-Type: application/json
 ###
 
 ### Sahan Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -79,7 +79,7 @@ Content-Type: application/json
 ###
 
 ### Ravindra Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -92,7 +92,7 @@ Content-Type: application/json
 ###
 
 ### Weerasinghe 01 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -105,7 +105,7 @@ Content-Type: application/json
 ###
 
 ### Weerasinghe 02 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -118,7 +118,7 @@ Content-Type: application/json
 ###
 
 ### Weerasinghe 03 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -131,7 +131,7 @@ Content-Type: application/json
 ###
 
 ### Asiri Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -144,7 +144,7 @@ Content-Type: application/json
 ###
 
 ### Wanasinghe 1 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -157,7 +157,7 @@ Content-Type: application/json
 ###
 
 ### Wanasinghe 2 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -170,7 +170,7 @@ Content-Type: application/json
 ###
 
 ### Wijerathna Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -183,7 +183,7 @@ Content-Type: application/json
 ###
 
 ### Sewwandi Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -196,7 +196,7 @@ Content-Type: application/json
 ###
 
 ### Keerthisinghe Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -209,7 +209,7 @@ Content-Type: application/json
 ###
 
 ### Kurunagala Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -222,7 +222,7 @@ Content-Type: application/json
 ###
 
 ### Anjalika 01 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -235,7 +235,7 @@ Content-Type: application/json
 ###
 
 ### Anjalika 02 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -248,7 +248,7 @@ Content-Type: application/json
 ###
 
 ### Walawa Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -261,7 +261,7 @@ Content-Type: application/json
 ###
 
 ### Sirimadura I Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -274,7 +274,7 @@ Content-Type: application/json
 ###
 
 ### Sirimadura II Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -287,7 +287,7 @@ Content-Type: application/json
 ###
 
 ### Sirimadura III Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -300,7 +300,7 @@ Content-Type: application/json
 ###
 
 ### Manamperi Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -313,7 +313,7 @@ Content-Type: application/json
 ###
 
 ### Jayani Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -326,7 +326,7 @@ Content-Type: application/json
 ###
 
 ### Ajantha Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -339,7 +339,7 @@ Content-Type: application/json
 ###
 
 ### Walawa A Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -352,7 +352,7 @@ Content-Type: application/json
 ###
 
 ### Walawa B Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -365,7 +365,7 @@ Content-Type: application/json
 ###
 
 ### Walawa C Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -378,7 +378,7 @@ Content-Type: application/json
 ###
 
 ### Samanala 1 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -391,7 +391,7 @@ Content-Type: application/json
 ###
 
 ### Samanala 2 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -404,7 +404,7 @@ Content-Type: application/json
 ###
 
 ### Samanala 3 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -417,7 +417,7 @@ Content-Type: application/json
 ### Male Hostels
 
 ### Sinharaja 1 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -430,7 +430,7 @@ Content-Type: application/json
 ###
 
 ### Sinharaja 2 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -443,7 +443,7 @@ Content-Type: application/json
 ###
 
 ### Sinharaja 3 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -456,7 +456,7 @@ Content-Type: application/json
 ###
 
 ### Sinharaja 4 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -469,7 +469,7 @@ Content-Type: application/json
 ###
 
 ### Sinharaja 5 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -482,7 +482,7 @@ Content-Type: application/json
 ###
 
 ### Sinharaja 6 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -495,7 +495,7 @@ Content-Type: application/json
 ###
 
 ### Dilani Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -508,7 +508,7 @@ Content-Type: application/json
 ###
 
 ### Sangamiththa Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -521,7 +521,7 @@ Content-Type: application/json
 ###
 
 ### Sithum Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -534,7 +534,7 @@ Content-Type: application/json
 ###
 
 ### Dayashanthi 1 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -547,7 +547,7 @@ Content-Type: application/json
 ###
 
 ### Dayashanthi 2 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -560,7 +560,7 @@ Content-Type: application/json
 ###
 
 ### Mahaweli 1 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -573,7 +573,7 @@ Content-Type: application/json
 ###
 
 ### Mahaweli 2 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -586,7 +586,7 @@ Content-Type: application/json
 ###
 
 ### Mapatuna Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -599,7 +599,7 @@ Content-Type: application/json
 ###
 
 ### Gunarathna 01 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -612,7 +612,7 @@ Content-Type: application/json
 ###
 
 ### Gunarathna 02 Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {
@@ -625,7 +625,7 @@ Content-Type: application/json
 ###
 
 ### Sisira Hostel
-POST http://localhost:3000/api/hostels
+POST http://localhost:3000/api/v1/hostels
 Content-Type: application/json
 
 {

@@ -47,7 +47,7 @@ export default function CreateHostel() {
   async function onSubmit(values: FormData) {
     const router = useRouter();
 
-    await axiosInstance.post("/api/hostels", {
+    await axiosInstance.post("/api/v1/hostels", {
       name: values.name,
       type: values.type,
       total_capacity: values.totalCapacity,

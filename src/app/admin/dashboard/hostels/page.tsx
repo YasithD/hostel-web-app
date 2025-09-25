@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PencilIcon, PlusIcon } from "lucide-react";
 
 export default async function Hostels() {
-  const response = await axiosInstance.get("/api/hostels");
+  const response = await axiosInstance.get("/api/v1/hostels");
   const data = response.data as Hostel[];
 
   return (
