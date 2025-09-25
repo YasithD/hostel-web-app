@@ -1,8 +1,13 @@
 import { User } from "@/db/schema";
+import { isAdminUser } from "@/utils/auth";
 import { addUser, getUsers } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const body = (await req.json()) as User;
 
   try {
@@ -18,6 +23,10 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   try {
     const users = await getUsers();
     return new Response(JSON.stringify(users), { status: 200 });

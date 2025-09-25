@@ -1,8 +1,13 @@
 import { Hostel } from "@/db/schema";
 import { addHostel, deleteAllHostels, getHostels } from "@/utils/db";
+import { isAdminUser } from "@/utils/auth";
 import { NextRequest } from "next/server";
 
 export async function GET() {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   try {
     const hostels = await getHostels();
     return new Response(JSON.stringify(hostels), { status: 200 });
@@ -12,6 +17,10 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const body = (await req.json()) as Hostel;
 
   try {
@@ -27,6 +36,10 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   try {
     const response = await deleteAllHostels();
     if (response.success) {

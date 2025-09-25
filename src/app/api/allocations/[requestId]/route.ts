@@ -1,7 +1,12 @@
+import { isAdminUser } from "@/utils/auth";
 import { getHostelAllocations } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { requestId: string } }) {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const { requestId } = await params;
   if (!requestId) {
     return new Response(JSON.stringify({ error: "Request ID is required" }), { status: 400 });

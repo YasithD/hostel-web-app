@@ -1,9 +1,15 @@
 import { Hostel } from "@/db/schema";
+import { isAdminUser } from "@/utils/auth";
 import { getHostel, updateHostel } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { hostelId: string } }) {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const { hostelId } = await params;
+
   try {
     const response = await getHostel(hostelId);
     if (response.length > 0) {
@@ -17,6 +23,10 @@ export async function GET(request: NextRequest, { params }: { params: { hostelId
 }
 
 export async function PUT(request: NextRequest, { params }: { params: { hostelId: string } }) {
+  if (!isAdminUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const { hostelId } = await params;
   const body = (await request.json()) as Hostel;
   try {

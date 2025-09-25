@@ -2,8 +2,13 @@ import { deleteRequest, getHostels, getRequest, updateRequest } from "@/utils/db
 import { NextRequest } from "next/server";
 import { HostelAllocation, Request } from "@/db/schema";
 import { REQUEST_UPDATE_ACTIONS, RequestAction } from "@/types/db";
+import { isLoggedInUser } from "@/utils/auth";
 
 export async function GET(request: NextRequest, { params }: { params: { requestId: string } }) {
+  if (!isLoggedInUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const { requestId } = await params;
   if (!requestId) {
     return new Response(JSON.stringify({ error: "Request ID is required" }), { status: 400 });
@@ -18,6 +23,10 @@ export async function GET(request: NextRequest, { params }: { params: { requestI
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: { requestId: string } }) {
+  if (!isLoggedInUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const { requestId } = await params;
   try {
     const response = await deleteRequest(requestId);
@@ -28,6 +37,10 @@ export async function DELETE(request: NextRequest, { params }: { params: { reque
 }
 
 export async function PUT(request: NextRequest, { params }: { params: { requestId: string } }) {
+  if (!isLoggedInUser()) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  }
+
   const { requestId } = await params;
   const body = (await request.json()) as { hostelAllocations?: HostelAllocation[]; action: RequestAction };
   const { action } = body;
