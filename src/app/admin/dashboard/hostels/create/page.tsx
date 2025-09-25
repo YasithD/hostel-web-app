@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import axiosInstance from "@/utils/axios";
 import { useRouter } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 
 const formSchema = yup.object({
   name: yup.string().required("Hostel name is required"),
@@ -46,13 +47,23 @@ export default function CreateHostel() {
 
   async function onSubmit(values: FormData) {
     const router = useRouter();
+    const { getToken } = await auth();
+    const token = await getToken();
 
-    await axiosInstance.post("/api/v1/hostels", {
-      name: values.name,
-      type: values.type,
-      total_capacity: values.totalCapacity,
-      available_capacity: values.availableCapacity,
-    });
+    await axiosInstance.post(
+      "/api/v1/hostels",
+      {
+        name: values.name,
+        type: values.type,
+        total_capacity: values.totalCapacity,
+        available_capacity: values.availableCapacity,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     router.push("/admin/dashboard/hostels");
   }

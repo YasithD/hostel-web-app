@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import axiosInstance from "@/utils/axios";
+import { useAuth } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -24,8 +25,9 @@ const defaultValues: FormData = {
 };
 
 export default function SignUp() {
+  const { getToken } = useAuth();
+  const token = getToken();
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
-
   const form = useForm({
     resolver: yupResolver(formSchema),
     defaultValues,
@@ -34,11 +36,19 @@ export default function SignUp() {
 
   const onSubmit = async (data: FormData) => {
     /* Submit user details to the API */
-    const result = await axiosInstance.post("/api/v1/users", {
-      email: data.suslEmail,
-      first_name: data.firstName,
-      last_name: data.lastName,
-    });
+    const result = await axiosInstance.post(
+      "/api/v1/users",
+      {
+        email: data.suslEmail,
+        first_name: data.firstName,
+        last_name: data.lastName,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     console.log(">>> User details submitted: ", result);
   };

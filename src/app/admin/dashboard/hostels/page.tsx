@@ -4,9 +4,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PencilIcon, PlusIcon } from "lucide-react";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function Hostels() {
-  const response = await axiosInstance.get("/api/v1/hostels");
+  const { getToken } = await auth();
+  const token = await getToken();
+  const response = await axiosInstance.get("/api/v1/hostels", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = response.data as Hostel[];
 
   return (

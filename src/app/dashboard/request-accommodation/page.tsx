@@ -11,6 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import axiosInstance from "@/utils/axios";
+import { useAuth } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -133,6 +134,8 @@ const defaultValues: FormData = {
 
 export default function RequestAccommodation() {
   const router = useRouter();
+  const { getToken } = useAuth();
+  const token = getToken();
 
   const form = useForm({
     resolver: yupResolver(formSchema),
@@ -144,7 +147,11 @@ export default function RequestAccommodation() {
   const isReasonOther = form.watch("reason") === "other";
 
   async function onSubmit(values: FormData) {
-    await axiosInstance.post("/api/v1/requests", values);
+    await axiosInstance.post("/api/v1/requests", values, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     router.push("/dashboard/view-requests");
   }
 

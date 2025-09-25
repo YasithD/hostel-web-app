@@ -9,17 +9,32 @@ import {
 import { ExternalRequest, InternalRequest, Request } from "@/db/schema";
 import axiosInstance from "@/utils/axios";
 import { REQUEST_UPDATE_ACTIONS } from "@/types/db";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function ViewRequest({ params }: { params: Promise<{ requestId: string }> }) {
   const { requestId } = await params;
+  const { getToken } = await auth();
+  const token = await getToken();
 
   /* Update last viewed at */
-  await axiosInstance.put(`/api/v1/requests/${requestId}`, {
-    action: REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT,
-  });
+  await axiosInstance.put(
+    `/api/v1/requests/${requestId}`,
+    {
+      action: REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   /* Get request details */
-  const response = await axiosInstance.get(`/api/v1/requests/${requestId}`);
+  const response = await axiosInstance.get(`/api/v1/requests/${requestId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = response.data as Request & (InternalRequest | ExternalRequest);
 
   return (

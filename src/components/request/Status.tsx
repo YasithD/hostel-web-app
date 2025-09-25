@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { Check, X } from "lucide-react";
 import axiosInstance from "@/utils/axios";
 import { ACCOUNT_ACTIVATION_STATUS } from "@/types/db";
+import { useAuth } from "@clerk/nextjs";
 
 type ActionConditionalProps =
   | {
@@ -24,10 +25,11 @@ type StatusProps = ActionConditionalProps & {
 };
 
 export default function Status({ status, enableActions: enablePopup = false, userId }: StatusProps) {
+  const { getToken } = useAuth();
+  const token = getToken();
   const ref = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
-
   const updatePosition = throttle(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -100,9 +102,17 @@ export default function Status({ status, enableActions: enablePopup = false, use
   }, [isPopupOpen]);
 
   const onActivate = async () => {
-    await axiosInstance.put(`/api/v1/users/${userId}`, {
-      action: ACCOUNT_ACTIVATION_STATUS.ACTIVE,
-    });
+    await axiosInstance.put(
+      `/api/v1/users/${userId}`,
+      {
+        action: ACCOUNT_ACTIVATION_STATUS.ACTIVE,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     setIsPopupOpen(false);
   };
 

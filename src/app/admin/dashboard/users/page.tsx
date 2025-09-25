@@ -2,9 +2,17 @@ import axiosInstance from "@/utils/axios";
 import { User } from "@/db/schema";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Status } from "@/components/request";
+import { auth } from "@clerk/nextjs/server";
 
-export default async function AdminDashboard() {
-  const response = await axiosInstance.get("/api/v1/users");
+export default async function Users() {
+  const { getToken } = await auth();
+  const token = await getToken();
+
+  const response = await axiosInstance.get("/api/v1/users", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = response.data as User[];
 
   return (

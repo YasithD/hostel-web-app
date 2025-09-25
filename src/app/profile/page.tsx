@@ -5,7 +5,7 @@ import { Form, FormField, FormItem, FormControl, FormMessage } from "@/component
 import { Input } from "@/components/ui/input";
 import { User } from "@/db/schema";
 import axiosInstance from "@/utils/axios";
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Edit } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -25,9 +25,10 @@ const defaultValues: FormData = {
 };
 
 export default function Profile() {
+  const { getToken } = useAuth();
+  const token = getToken();
   const [isEditing, setIsEditing] = useState({ firstName: false, lastName: false });
   const [userId, setUserId] = useState("");
-
   const { isSignedIn, isLoaded, user } = useUser();
 
   const form = useForm<FormData>({
@@ -38,7 +39,11 @@ export default function Profile() {
 
   useEffect(() => {
     const updateUserInfo = async () => {
-      const result = await axiosInstance.get(`/api/v1/users`);
+      const result = await axiosInstance.get(`/api/v1/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const currentUser = result.data.find((dbUser: User) => dbUser.email === user?.emailAddresses[0].emailAddress);
       setUserId(currentUser?.id);
       form.reset({
@@ -58,6 +63,9 @@ export default function Profile() {
       payload: {
         first_name: data.firstName,
         last_name: data.lastName,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
 

@@ -5,9 +5,17 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Status } from "@/components/request";
+import { auth } from "@clerk/nextjs/server";
 
-export default async function AdminDashboard() {
-  const response = await axiosInstance.get("/api/v1/requests");
+export default async function Requests() {
+  const { getToken } = await auth();
+  const token = await getToken();
+
+  const response = await axiosInstance.get("/api/v1/requests", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = response.data as Request[];
 
   return (
