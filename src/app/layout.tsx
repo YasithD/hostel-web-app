@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/login">
       <html lang="en">
         <body className={`${merriweather.variable} antialiased`}>
           <RootChildLayout>{children}</RootChildLayout>
