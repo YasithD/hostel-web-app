@@ -5,7 +5,7 @@ import { useAuth, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
 import NotificationIcon from "@/public/notification_icon.svg";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function RootChildLayout({ children }: { children: React.ReactNode }) {
@@ -13,6 +13,8 @@ export default function RootChildLayout({ children }: { children: React.ReactNod
   const { user, isLoaded, isSignedIn } = useUser();
   const { signOut } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
+  const isNotLoginPage = pathname !== "/login";
 
   useEffect(() => {
     const closeProfileDropdown = () => {
@@ -28,7 +30,7 @@ export default function RootChildLayout({ children }: { children: React.ReactNod
 
   return (
     <>
-      {!isLoaded || !isSignedIn ? (
+      {!isLoaded || !isSignedIn || !isNotLoginPage ? (
         <div className="flex flex-col min-h-screen overflow-y-auto overflow-x-hidden">
           {children}
           {/* Footer */}
