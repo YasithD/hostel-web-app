@@ -1,38 +1,35 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isAdminRoute = createRouteMatcher(["/admin(.*)", "/profile(.*)"]);
-const isUserRoute = createRouteMatcher(["/dashboard(.*)", "/profile(.*)"]);
+const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
+const isUserRoute = createRouteMatcher(["/dashboard(.*)"]);
 const isPublicRoute = createRouteMatcher(["/login", "/sign-up", "/"]);
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId } = await auth();
+  const { userId, sessionClaims } = await auth();
+  const currentUrl = new URL(req.url);
+  const isApiRequest = currentUrl.pathname.startsWith("/api");
+  const isAdminUser = sessionClaims?.metadata.role === "admin";
 
-  // Allow access to public routes
-  if (isPublicRoute(req)) {
-    return NextResponse.next();
-  }
+  // If authenticated
+  if (userId) {
+    if (isPublicRoute(req)) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
 
-  // Redirect to login if not authenticated
-  if (!userId) {
-    const loginUrl = new URL("/login", req.url);
-    return NextResponse.redirect(loginUrl);
-  }
+    if (isAdminRoute(req) && !isAdminUser) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
 
-  // Protect admin routes
-  const role = (await auth()).sessionClaims?.metadata.role;
-  if (isAdminRoute(req)) {
-    if (role !== "admin") {
-      const userUrl = new URL("/dashboard", req.url);
-      return NextResponse.redirect(userUrl);
+    if (isUserRoute(req) && isAdminUser) {
+      return NextResponse.redirect(new URL("/admin/dashboard", req.url));
     }
   }
 
-  // Protect user routes
-  if (isUserRoute(req)) {
-    if (role !== "user") {
-      const adminUrl = new URL("/admin/dashboard", req.url);
-      return NextResponse.redirect(adminUrl);
+  // If not authenticated
+  if (!userId) {
+    if (!isPublicRoute(req) && !isApiRequest) {
+      return NextResponse.redirect(new URL("/login", req.url));
     }
   }
 
