@@ -135,7 +135,6 @@ const defaultValues: FormData = {
 export default function RequestAccommodation() {
   const router = useRouter();
   const { getToken } = useAuth();
-  const token = getToken();
 
   const form = useForm({
     resolver: yupResolver(formSchema),
@@ -147,6 +146,7 @@ export default function RequestAccommodation() {
   const isReasonOther = form.watch("reason") === "other";
 
   async function onSubmit(values: FormData) {
+    const token = await getToken();
     await axiosInstance.post("/api/v1/requests", values, {
       headers: {
         Authorization: `Bearer ${token}`,

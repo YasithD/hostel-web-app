@@ -26,7 +26,6 @@ type StatusProps = ActionConditionalProps & {
 
 export default function Status({ status, enableActions: enablePopup = false, userId }: StatusProps) {
   const { getToken } = useAuth();
-  const token = getToken();
   const ref = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
@@ -102,6 +101,7 @@ export default function Status({ status, enableActions: enablePopup = false, use
   }, [isPopupOpen]);
 
   const onActivate = async () => {
+    const token = await getToken();
     await axiosInstance.put(
       `/api/v1/users/${userId}`,
       {

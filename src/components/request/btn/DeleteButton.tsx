@@ -18,10 +18,10 @@ export default function RequestDeleteButton(props: RequestDeleteButtonProps) {
   const { variant, requestId, className } = props;
 
   const { getToken } = useAuth();
-  const token = getToken();
   const router = useRouter();
 
   const handleDelete = async () => {
+    const token = await getToken();
     await axiosInstance.delete(`/api/v1/requests/${requestId}`, {
       headers: {
         Authorization: `Bearer ${token}`,

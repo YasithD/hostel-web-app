@@ -21,12 +21,12 @@ export default function HostelSelector(props: HostelSelectorProps) {
   const { requestId, maleStudentCount, femaleStudentCount, hostels, status } = props;
 
   const { getToken } = useAuth();
-  const token = getToken();
   const router = useRouter();
   const [allocations, setAllocations] = useState<AllocationProps[]>([]);
 
   /* Approve actions */
   const handleApprove = async () => {
+    const token = await getToken();
     await axiosInstance.put(
       `/api/v1/requests/${requestId}`,
       {
@@ -48,6 +48,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
 
   /* Reject actions */
   const handleReject = async () => {
+    const token = await getToken();
     await axiosInstance.put(
       `/api/v1/requests/${requestId}`,
       {
@@ -64,6 +65,7 @@ export default function HostelSelector(props: HostelSelectorProps) {
 
   /* Delete actions */
   const handleDelete = async () => {
+    const token = await getToken();
     await axiosInstance.delete(`/api/v1/requests/${requestId}`, {
       headers: {
         Authorization: `Bearer ${token}`,

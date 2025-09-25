@@ -26,7 +26,6 @@ const defaultValues: FormData = {
 
 export default function Profile() {
   const { getToken } = useAuth();
-  const token = getToken();
   const [isEditing, setIsEditing] = useState({ firstName: false, lastName: false });
   const [userId, setUserId] = useState("");
   const { isSignedIn, isLoaded, user } = useUser();
@@ -39,6 +38,7 @@ export default function Profile() {
 
   useEffect(() => {
     const updateUserInfo = async () => {
+      const token = await getToken();
       const result = await axiosInstance.get(`/api/v1/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -59,6 +59,7 @@ export default function Profile() {
       return;
     }
 
+    const token = await getToken();
     const result = await axiosInstance.put(`/api/v1/users/${userId}`, {
       payload: {
         first_name: data.firstName,

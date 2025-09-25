@@ -26,7 +26,6 @@ const defaultValues: FormData = {
 
 export default function SignUp() {
   const { getToken } = useAuth();
-  const token = getToken();
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const form = useForm({
     resolver: yupResolver(formSchema),
@@ -35,6 +34,7 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: FormData) => {
+    const token = await getToken();
     /* Submit user details to the API */
     const result = await axiosInstance.post(
       "/api/v1/users",

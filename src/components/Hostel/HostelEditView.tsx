@@ -43,7 +43,6 @@ export default function HostelEditView({
   availableCapacity,
 }: HostelEditViewProps) {
   const { getToken } = useAuth();
-  const token = getToken();
   const router = useRouter();
   const defaultValues: FormData = {
     name,
@@ -58,6 +57,7 @@ export default function HostelEditView({
   });
 
   async function onSubmit(values: FormData) {
+    const token = await getToken();
     await axiosInstance.put(
       `/api/v1/hostels/${hostelId}`,
       {
