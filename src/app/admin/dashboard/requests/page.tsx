@@ -39,7 +39,7 @@ export default async function Requests() {
           {data.map((request, index) => (
             <TableRow key={index}>
               <TableCell className="w-[150px] md:w-auto">{request.id}</TableCell>
-              <TableCell className="hidden md:table-cell">{request.user_id}</TableCell>
+              <TableCell className="hidden md:table-cell">{request.user_email}</TableCell>
               <TableCell className="hidden md:table-cell">
                 {request.type.charAt(0).toUpperCase() + request.type.slice(1)}
               </TableCell>

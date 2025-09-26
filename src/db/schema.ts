@@ -5,7 +5,7 @@ import { createId } from "@/utils/uuid";
 // Define tables
 export const requests = sqliteTable("requests", {
   id: text("id").primaryKey(),
-  user_id: text("user_id").notNull(),
+  user_email: text("user_email").notNull(),
   type: text("type", { enum: ["internal", "external"] }).notNull(),
   male_student_count: integer("male_student_count").notNull(),
   female_student_count: integer("female_student_count").notNull(),
@@ -81,6 +81,10 @@ export const requestsRelations = relations(requests, ({ one, many }) => ({
     references: [externalRequests.request_id],
   }),
   hostelAllocations: many(hostelAllocations),
+  user: one(users, {
+    fields: [requests.user_email],
+    references: [users.email],
+  }),
 }));
 
 export const internalRequestsRelations = relations(internalRequests, ({ one }) => ({
@@ -110,6 +114,10 @@ export const hostelAllocationsRelations = relations(hostelAllocations, ({ one })
 
 export const hostelsRelations = relations(hostels, ({ many }) => ({
   hostelAllocations: many(hostelAllocations),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+  requests: many(requests),
 }));
 
 // Typescript types

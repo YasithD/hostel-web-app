@@ -50,7 +50,7 @@ export default async function ViewRequest({ params }: { params: Promise<{ reques
         <RequestDetailsSectionTitle>Request Metadata</RequestDetailsSectionTitle>
         <RequestDetailsSectionBody>
           <RequestDetailsSectionItem title="Request ID" value={data.id} />
-          <RequestDetailsSectionItem title="Requested By" value={data.user_id} />
+          <RequestDetailsSectionItem title="Requested By" value={data.user_email} />
           <RequestDetailsSectionItem
             title="Request Type"
             value={data.type.charAt(0).toUpperCase() + data.type.slice(1)}

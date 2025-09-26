@@ -11,11 +11,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import axiosInstance from "@/utils/axios";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -25,6 +26,7 @@ const formSchema = yup.object({
     .string()
     .oneOf(["internal", "external"] as const)
     .defined(),
+  userEmail: yup.string().email("Invalid email address").required("Email address is required").defined(),
 
   // Internal student fields
   faculty: yup
@@ -120,6 +122,7 @@ export type FormData = yup.InferType<typeof formSchema>;
 // Default values
 const defaultValues: FormData = {
   typeOfStudent: "internal",
+  userEmail: "",
   faculty: "",
   academicYear: "",
   semester: "",
@@ -135,6 +138,13 @@ const defaultValues: FormData = {
 export default function RequestAccommodation() {
   const router = useRouter();
   const { getToken } = useAuth();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user) {
+      form.setValue("userEmail", user.emailAddresses[0].emailAddress);
+    }
+  }, [user]);
 
   const form = useForm({
     resolver: yupResolver(formSchema),

@@ -1,3 +1,5 @@
+"use client";
+
 import axiosInstance from "@/utils/axios";
 import { Request } from "@/db/schema";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -5,18 +7,27 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Status } from "@/components/request";
-import { auth } from "@clerk/nextjs/server";
+import { useAuth, useUser } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
 
-export default async function ViewRequests() {
-  const { getToken } = await auth();
-  const token = await getToken();
+export default function ViewRequests() {
+  const [requests, setRequests] = useState<Request[]>([]);
+  const { getToken } = useAuth();
+  const { user } = useUser();
 
-  const response = await axiosInstance.get("/api/v1/requests", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const data = response.data as Request[];
+  useEffect(() => {
+    const fetchRequests = async () => {
+      const token = await getToken();
+      const userEmail = user?.emailAddresses[0].emailAddress;
+      const response = await axiosInstance.get(`/api/v1/requests?userEmail=${userEmail}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setRequests(response.data as Request[]);
+    };
+    fetchRequests();
+  }, [user]);
 
   return (
     <div className="flex flex-col gap-8 lg:mx-auto mx-4 mt-10 w-[580px] md:w-[1000px]">
@@ -34,7 +45,7 @@ export default async function ViewRequests() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((request, index) => (
+          {requests.map((request, index) => (
             <TableRow key={index}>
               <TableCell className="w-[150px] md:w-auto">{request.id}</TableCell>
               <TableCell className="hidden md:table-cell">{format(request.created_at!, "PPP")}</TableCell>

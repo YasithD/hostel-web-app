@@ -26,7 +26,7 @@ const submitInternalRequest = async (data: FormData) => {
   return await db.batch([
     db.insert(requests).values({
       id: requestId,
-      user_id: "1",
+      user_email: data.userEmail,
       type: "internal",
       male_student_count: data.maleStudentCount,
       female_student_count: data.femaleStudentCount,
@@ -47,7 +47,7 @@ const submitExternalRequest = async (data: FormData) => {
   return await db.batch([
     db.insert(requests).values({
       id: requestId,
-      user_id: "1",
+      user_email: data.userEmail,
       type: "external",
       male_student_count: data.maleStudentCount,
       female_student_count: data.femaleStudentCount,
@@ -73,6 +73,10 @@ export const submitRequest = async (data: FormData) => {
 
 export const getRequests = async () => {
   return await db.select().from(requests);
+};
+
+export const getRequestsByUserEmail = async (userEmail: string) => {
+  return await db.select().from(requests).where(eq(requests.user_email, userEmail));
 };
 
 export const getRequest = async (requestId: string) => {
@@ -162,13 +166,13 @@ const isAccountActivationStatus = (action: UserActions): action is AccountActiva
   return Object.values(ACCOUNT_ACTIVATION_STATUS).includes(action);
 };
 
-export const updateUser = async (userId: string, action?: UserActions, data?: any) => {
+export const updateUser = async (userEmail: string, action?: UserActions, data?: any) => {
   if (action && isAccountActivationStatus(action)) {
-    return await db.update(users).set({ account_activation: action }).where(eq(users.id, userId));
+    return await db.update(users).set({ account_activation: action }).where(eq(users.email, userEmail));
   } else if (!!data) {
     return await db
       .update(users)
       .set({ ...data })
-      .where(eq(users.id, userId));
+      .where(eq(users.email, userEmail));
   }
 };
