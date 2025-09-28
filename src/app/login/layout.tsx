@@ -30,11 +30,6 @@ export default function RootLayout({
         {/* Main content area */}
         <main className="w-full h-[calc(100vh-6.5rem)]">{children}</main>
       </div>
-
-      {/* Footer */}
-      <footer className="flex items-center justify-center w-full h-10 px-4 border-t mt-auto">
-        <p className="text-sm font-medium text-muted">© Copyright SUSL 2025. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
