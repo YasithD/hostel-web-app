@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col">
       <div className="flex flex-col relative">
         {/* Background Image */}
         <div className="-z-10 absolute inset-0 bg-login-image hidden md:block" />
