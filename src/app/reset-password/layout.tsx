@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.svg";
 
-export default function ResetPasswordLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -21,8 +21,8 @@ export default function ResetPasswordLayout({
           <div className="flex items-center justify-between gap-4 ml-auto">
             {/* Header content */}
             <div className="items-center gap-4 mr-8">
-              <Link href="/login">
-                <p className="text-base font-medium bg-secondary py-2 px-4 rounded-md">Login</p>
+              <Link href="/sign-up">
+                <p className="text-base font-medium bg-secondary py-2 px-4 rounded-md">Sign Up</p>
               </Link>
             </div>
           </div>
