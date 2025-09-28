@@ -128,7 +128,7 @@ export default function ResetPassword() {
                 </FormItem>
               )}
             />
-            <Button className="w-full" type="submit" disabled={!form.formState.isValid}>
+            <Button className="w-full" type="submit" disabled={!form.formState.isValid || form.formState.isSubmitting}>
               Reset Password
             </Button>
           </form>
