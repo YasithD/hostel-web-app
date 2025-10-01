@@ -116,6 +116,11 @@ export const updateRequest = async (requestId: string, action: RequestAction, da
         db.update(hostels).set({ available_capacity: hostel.available_capacity }).where(eq(hostels.id, hostel.id))
       ),
     ]);
+  } else if (action === REQUEST_UPDATE_ACTIONS.REJECT_REQUEST) {
+    return await db
+      .update(requests)
+      .set({ status: "rejected", updated_at: new Date() })
+      .where(eq(requests.id, requestId));
   } else if (action === REQUEST_UPDATE_ACTIONS.UPDATE_LAST_VIEWED_AT) {
     return await db.update(requests).set({ last_viewed_at: new Date() }).where(eq(requests.id, requestId));
   } else if (!!data) {
