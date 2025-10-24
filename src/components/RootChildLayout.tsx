@@ -46,7 +46,6 @@ export default function RootChildLayout({ children }: { children: React.ReactNod
               <Image src={Logo} alt="logo" fill />
             </div>
             <div className="flex items-center justify-between gap-4 ml-auto">
-              {/* TODO: Replace with user name */}
               <p className="hidden md:block mr-8 text-base font-medium text-gray-700">Hello, {user?.firstName}</p>
               {/* Header content */}
               <p
