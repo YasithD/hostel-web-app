@@ -28,12 +28,12 @@ const defaultValues: FormData = {
 export default function ResetPassword() {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const { isSignedIn, getToken } = useAuth();
-  const { user, isLoaded: isUserLoaded } = useUser();
-  const { signIn, setActive, isLoaded: isSignInLoaded } = useSignIn();
+  const { user } = useUser();
+  const { signIn, setActive, isLoaded } = useSignIn();
   const router = useRouter();
 
   useEffect(() => {
-    if (isSignedIn && isUserLoaded) {
+    if (isSignedIn) {
       const updateAccountActivation = async () => {
         const userEmail = user?.emailAddresses[0].emailAddress;
         const token = await getToken();
@@ -53,7 +53,7 @@ export default function ResetPassword() {
 
       updateAccountActivation();
     }
-  }, [isSignedIn, isUserLoaded, router]);
+  }, [isSignedIn, router]);
 
   const form = useForm<FormData>({
     resolver: yupResolver(formSchema),
@@ -62,7 +62,7 @@ export default function ResetPassword() {
   });
 
   const onSubmit = async (data: FormData) => {
-    if (!isSignInLoaded) {
+    if (!isLoaded) {
       alert("Please wait while we are loading the page.");
       setTimeout(() => {
         window.location.reload();
