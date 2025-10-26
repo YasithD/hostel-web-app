@@ -24,10 +24,10 @@ export default async function Users() {
       <Table className="min-w-full">
         <TableHeader>
           <TableRow>
-            <TableHead>Email</TableHead>
-            <TableHead>First Name</TableHead>
-            <TableHead>Last Name</TableHead>
-            <TableHead>Account Activation</TableHead>
+            <TableHead className="text-foreground-muted">Email</TableHead>
+            <TableHead className="text-foreground-muted">First Name</TableHead>
+            <TableHead className="text-foreground-muted">Last Name</TableHead>
+            <TableHead className="text-foreground-muted">Account Activation</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
