@@ -3,7 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuth, useSignIn } from "@clerk/nextjs";
+import { ACCOUNT_ACTIVATION_STATUS } from "@/types/db";
+import axiosInstance from "@/utils/axios";
+import { useAuth, useSignIn, useUser } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeClosed } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -25,15 +27,33 @@ const defaultValues: FormData = {
 
 export default function ResetPassword() {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
-  const { isSignedIn } = useAuth();
-  const { signIn, setActive, isLoaded } = useSignIn();
+  const { isSignedIn, getToken } = useAuth();
+  const { user, isLoaded: isUserLoaded } = useUser();
+  const { signIn, setActive, isLoaded: isSignInLoaded } = useSignIn();
   const router = useRouter();
 
   useEffect(() => {
-    if (isSignedIn) {
-      router.push("/dashboard");
+    if (isSignedIn && isUserLoaded) {
+      const updateAccountActivation = async () => {
+        const userEmail = user?.emailAddresses[0].emailAddress;
+        const token = await getToken();
+        await axiosInstance.put(
+          `/api/v1/users/${userEmail}`,
+          {
+            action: ACCOUNT_ACTIVATION_STATUS.ACTIVE,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        router.push("/dashboard");
+      };
+
+      updateAccountActivation();
     }
-  }, [isSignedIn, router]);
+  }, [isSignedIn, isUserLoaded, router]);
 
   const form = useForm<FormData>({
     resolver: yupResolver(formSchema),
@@ -42,7 +62,7 @@ export default function ResetPassword() {
   });
 
   const onSubmit = async (data: FormData) => {
-    if (!isLoaded) {
+    if (!isSignInLoaded) {
       alert("Please wait while we are loading the page.");
       setTimeout(() => {
         window.location.reload();
