@@ -14,7 +14,7 @@ export default function RootChildLayout({ children }: { children: React.ReactNod
   const { signOut } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const isNotLoginPage = pathname !== "/login";
+  const isPublicRoute = pathname === "/login" || pathname === "/sign-up" || pathname.startsWith("/reset-password");
 
   useEffect(() => {
     const closeProfileDropdown = () => {
@@ -30,7 +30,7 @@ export default function RootChildLayout({ children }: { children: React.ReactNod
 
   return (
     <>
-      {!isLoaded || !isSignedIn || !isNotLoginPage ? (
+      {!isLoaded || !isSignedIn || isPublicRoute ? (
         <div className="flex flex-col min-h-screen overflow-y-auto overflow-x-hidden">
           {children}
           {/* Footer */}
