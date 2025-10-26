@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import PasswordResetEmail from "@/components/emails/PasswordReset";
 import { clerkClient } from "@clerk/nextjs/server";
 import { createPassword } from "./uuid";
+import { Roles } from "@/types/global";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -15,6 +16,9 @@ export const sendActivationEmail = async (userEmail: string, firstName: string, 
       firstName: firstName,
       lastName: lastName,
       password: createPassword()(),
+      publicMetadata: {
+        role: "user" as Roles,
+      },
     });
 
     /* Send activation email */
