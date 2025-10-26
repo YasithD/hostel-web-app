@@ -8,6 +8,7 @@ export type RequestAction = (typeof REQUEST_UPDATE_ACTIONS)[keyof typeof REQUEST
 
 export const ACCOUNT_ACTIVATION_STATUS = {
   PENDING: "pending",
+  ACTIVATION_SENT: "activation_sent",
   ACTIVE: "active",
   INACTIVE: "inactive",
 } as const;

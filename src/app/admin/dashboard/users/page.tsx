@@ -37,7 +37,13 @@ export default async function Users() {
               <TableCell>{user.first_name}</TableCell>
               <TableCell>{user.last_name}</TableCell>
               <TableCell>
-                <Status status={user.account_activation} userId={user.id} enableActions />
+                <Status
+                  status={user.account_activation}
+                  firstName={user.first_name}
+                  lastName={user.last_name}
+                  userEmail={user.email}
+                  enableActions
+                />
               </TableCell>
             </TableRow>
           ))}

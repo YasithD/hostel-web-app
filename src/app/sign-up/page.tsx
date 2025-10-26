@@ -7,6 +7,7 @@ import axiosInstance from "@/utils/axios";
 import { useAuth } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -28,6 +29,7 @@ const defaultValues: FormData = {
 export default function SignUp() {
   const { getToken } = useAuth();
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
+  const router = useRouter();
   const form = useForm({
     resolver: yupResolver(formSchema),
     defaultValues,
@@ -51,7 +53,7 @@ export default function SignUp() {
       }
     );
 
-    console.log(">>> User details submitted: ", result);
+    router.push("/login");
   };
 
   const togglePasswordVisibility = () => {

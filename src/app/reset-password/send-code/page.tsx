@@ -67,7 +67,7 @@ export default function ResetPassword() {
           <br />
           SUSL Hostel Management System
         </p>
-        <p className="text-sm text-muted">Enter your email to receive reset password link</p>
+        <p className="text-sm text-muted">Enter your email to receive reset password code</p>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
@@ -85,7 +85,7 @@ export default function ResetPassword() {
               )}
             />
             <Button className="w-full" type="submit" disabled={!form.formState.isValid || form.formState.isSubmitting}>
-              Send Link
+              Send Code
             </Button>
           </form>
         </Form>

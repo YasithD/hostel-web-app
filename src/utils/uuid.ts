@@ -6,3 +6,10 @@ export const createId = () =>
     length: 10,
     fingerprint: "a-fingerprint-for-hostel-web-app",
   });
+
+export const createPassword = () =>
+  init({
+    random: Math.random,
+    length: 10,
+    fingerprint: "a-fingerprint-for-hostel-web-app-password",
+  });

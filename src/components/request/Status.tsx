@@ -1,11 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 import { useEffect, useRef, useState } from "react";
 import { throttle } from "lodash";
 import { createPortal } from "react-dom";
-import { Check, X } from "lucide-react";
+import { Send, X } from "lucide-react";
 import axiosInstance from "@/utils/axios";
 import { ACCOUNT_ACTIVATION_STATUS } from "@/types/db";
 import { useAuth } from "@clerk/nextjs";
@@ -13,22 +12,33 @@ import { useAuth } from "@clerk/nextjs";
 type ActionConditionalProps =
   | {
       enableActions: boolean;
-      userId: string;
+      firstName: string;
+      lastName: string;
+      userEmail: string;
     }
   | {
       enableActions?: never;
-      userId?: never;
+      firstName?: string;
+      lastName?: string;
+      userEmail?: never;
     };
 
 type StatusProps = ActionConditionalProps & {
-  status: "pending" | "approved" | "rejected" | "active" | "inactive";
+  status: "pending" | "approved" | "rejected" | "active" | "inactive" | "activation_sent";
 };
 
-export default function Status({ status, enableActions: enablePopup = false, userId }: StatusProps) {
+export default function Status({
+  status,
+  enableActions: enablePopup = false,
+  firstName,
+  lastName,
+  userEmail,
+}: StatusProps) {
   const { getToken } = useAuth();
   const ref = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
+
   const updatePosition = throttle(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -103,9 +113,13 @@ export default function Status({ status, enableActions: enablePopup = false, use
   const onActivate = async () => {
     const token = await getToken();
     await axiosInstance.put(
-      `/api/v1/users/${userId}`,
+      `/api/v1/users/${userEmail}`,
       {
-        action: ACCOUNT_ACTIVATION_STATUS.ACTIVE,
+        action: ACCOUNT_ACTIVATION_STATUS.ACTIVATION_SENT,
+        payload: {
+          firstName: firstName,
+          lastName: lastName,
+        },
       },
       {
         headers: {
@@ -120,6 +134,15 @@ export default function Status({ status, enableActions: enablePopup = false, use
     setIsPopupOpen(false);
   };
 
+  const getStatusTitle = (status: StatusProps["status"]) => {
+    switch (status) {
+      case "activation_sent":
+        return "Activation Sent";
+      default:
+        return status.charAt(0).toUpperCase() + status.slice(1);
+    }
+  };
+
   return (
     <>
       <div
@@ -127,6 +150,7 @@ export default function Status({ status, enableActions: enablePopup = false, use
         className={cn(
           "px-2 py-1 rounded-md text-center text-foreground-muted select-none",
           status === "pending" && "bg-warning",
+          status === "activation_sent" && "bg-warning",
           status === "approved" && "bg-success",
           status === "rejected" && "bg-danger",
           status === "active" && "bg-success",
@@ -135,24 +159,24 @@ export default function Status({ status, enableActions: enablePopup = false, use
         )}
         {...(enablePopup && { onClick: () => setIsPopupOpen(!isPopupOpen) })}
       >
-        {status.charAt(0).toUpperCase() + status.slice(1)}
+        {getStatusTitle(status)}
       </div>
       {enablePopup &&
         isPopupOpen &&
         status === "pending" &&
         createPortal(
           <div id="status-popup" className="fixed p-2 bg-background rounded-md shadow-md" style={popupPosition}>
-            <p className="text-sm text-muted w-40">Do you wish to activate this account?</p>
+            <p className="text-sm text-muted w-40">Send an email to the user to activate their account?</p>
             <div className="flex justify-end gap-2 mt-2">
               <div title="Cancel">
                 <X
-                  className="cursor-pointer p-1 rounded-full border border-secondary hover:bg-secondary hover:stroke-secondary-foreground"
+                  className="cursor-pointer p-1 rounded-full border border-foreground-muted hover:bg-secondary hover:stroke-secondary-foreground hover:border-secondary"
                   size={24}
                   onClick={onCancel}
                 />
               </div>
               <div title="Activate">
-                <Check
+                <Send
                   className="cursor-pointer p-1 rounded-full border border-primary hover:bg-primary hover:stroke-primary-foreground"
                   size={24}
                   color="#6a1d19"

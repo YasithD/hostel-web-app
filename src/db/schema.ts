@@ -63,7 +63,7 @@ export const users = sqliteTable(
     email: text("email").notNull(),
     first_name: text("first_name").notNull(),
     last_name: text("last_name").notNull(),
-    account_activation: text("account_activation", { enum: ["pending", "active", "inactive"] })
+    account_activation: text("account_activation", { enum: ["pending", "activation_sent", "active", "inactive"] })
       .notNull()
       .default("pending"),
   },
