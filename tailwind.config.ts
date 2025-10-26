@@ -72,7 +72,6 @@ export default {
       backgroundImage: {
         bannerImage: "url('/banner.jpg')",
         blackOverlay: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8))",
-        loginImage: "url('/login.png')",
       },
     },
   },

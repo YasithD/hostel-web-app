@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import axiosInstance from "@/utils/axios";
 import { useAuth } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -58,9 +59,9 @@ export default function SignUp() {
   };
 
   return (
-    <div className="h-full flex items-center justify-center">
+    <div className="h-full flex items-start justify-center md:pt-[120px] pt-8">
       {/* Form Section */}
-      <div className="flex flex-col gap-4 items-center justify-center p-16 md:w-[500px] md:shadow-lg rounded-md bg-background">
+      <div className="flex flex-col gap-4 items-center justify-center sm:w-[400px]">
         <p className="text-2xl font-semibold text-center">
           Welcome to
           <br />
@@ -115,6 +116,12 @@ export default function SignUp() {
             </Button>
           </form>
         </Form>
+        <p className="text-sm text-muted">
+          Already have an account?{" "}
+          <Link href="/login" className="text-primary underline">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

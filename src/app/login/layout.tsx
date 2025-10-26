@@ -9,22 +9,11 @@ export default function ResetPasswordLayout({
 }>) {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col relative">
-        {/* Background Image */}
-        <div className="-z-10 absolute inset-0 bg-login-image hidden md:block" />
-
+      <div className="flex flex-col">
         {/* Topbar */}
         <header className="flex w-full h-16 p-2 flex-shrink-0">
           <div className="relative w-28">
             <Image src={Logo} alt="logo" fill />
-          </div>
-          <div className="flex items-center justify-between gap-4 ml-auto">
-            {/* Header content */}
-            <div className="items-center gap-4 mr-8">
-              <Link href="/sign-up">
-                <p className="text-base font-medium bg-secondary py-2 px-4 rounded-md">Sign Up</p>
-              </Link>
-            </div>
           </div>
         </header>
         {/* Main content area */}

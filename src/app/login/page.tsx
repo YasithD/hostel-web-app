@@ -85,9 +85,9 @@ export default function Login() {
   };
 
   return (
-    <div className="h-full flex items-center justify-center">
+    <div className="h-full flex items-start justify-center md:pt-[120px] pt-8">
       {/* Form Section */}
-      <div className="flex flex-col gap-4 items-center justify-center p-16 md:w-[500px] md:shadow-lg rounded-md bg-background">
+      <div className="flex flex-col gap-4 items-center justify-center sm:w-[400px]">
         <p className="text-2xl font-semibold text-center">
           Welcome to
           <br />
@@ -152,6 +152,13 @@ export default function Login() {
             </Button>
           </form>
         </Form>
+
+        <p className="text-sm text-muted">
+          Don't have an account?{" "}
+          <Link href="/sign-up" className="text-primary underline">
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );
