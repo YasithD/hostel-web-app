@@ -4,10 +4,6 @@ import { addUser, getUsers } from "@/utils/db";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-  if (!(await isAdminUser())) {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
-  }
-
   const body = (await req.json()) as User;
 
   try {
