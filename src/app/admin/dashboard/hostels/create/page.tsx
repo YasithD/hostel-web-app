@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import axiosInstance from "@/utils/axios";
 import { useRouter } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
+import { useAuth } from "@clerk/nextjs";
 
 const formSchema = yup.object({
   name: yup.string().required("Hostel name is required"),
@@ -47,7 +47,7 @@ export default function CreateHostel() {
 
   async function onSubmit(values: FormData) {
     const router = useRouter();
-    const { getToken } = await auth();
+    const { getToken } = useAuth();
     const token = await getToken();
 
     await axiosInstance.post(
