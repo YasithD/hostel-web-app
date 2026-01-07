@@ -98,6 +98,10 @@ input[type="number"] {
     @apply bg-bannerImage bg-cover bg-bottom bg-repeat;
   }
 
+  .bg-primary-gradient {
+    background: linear-gradient(to bottom, oklch(var(--primary)/0.1) 0%, oklch(var(--primary-foreground)/0.1) 40%);
+  }
+
   .card {
     background: linear-gradient(0deg, oklch(var(--bg)) 95%, oklch(var(--bg-dark)))
   }
